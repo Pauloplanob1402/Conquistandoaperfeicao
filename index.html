@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conquistando a Perfeição</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FAF9F6;
+    --ink: #1C1B19;
+    --ink-soft: #55524C;
+    --line: #E2DFD8;
+    --red: #A11D2E;
+    --red-dark: #7A1522;
+    --card: #FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:880px; margin:0 auto; padding:0 24px;}
+
+  /* NAV */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,249,246,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .brand{font-family:'Fraunces', serif; font-weight:700; font-size:17px; letter-spacing:0.01em;}
+  .brand span{color:var(--red);}
+  .tabs{display:flex; gap:2px;}
+  .tab{
+    font-size:13px; font-weight:500; color:var(--ink-soft);
+    padding:8px 14px; border-radius:6px; cursor:pointer;
+    transition:all .15s ease;
+    border:none; background:none; font-family:'Inter',sans-serif;
+  }
+  .tab:hover{color:var(--ink);}
+  .tab.active{color:var(--red); background:#F4E6E8;}
+  .menu-toggle{display:none;}
+
+  /* PAGES */
+  .page{display:none; animation:fade .25s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
+  section{padding:64px 0;}
+  section.tight{padding:40px 0;}
+  .eyebrow{
+    font-size:11px; text-transform:uppercase; letter-spacing:0.14em;
+    color:var(--red); font-weight:600; margin-bottom:14px; display:block;
+  }
+
+  /* HOME HERO */
+  .hero{padding:96px 0 72px; border-bottom:1px solid var(--line);}
+  .hero h1{font-size:44px; line-height:1.12; max-width:640px;}
+  .hero p{font-size:17px; color:var(--ink-soft); margin-top:20px; max-width:520px;}
+  .btn{
+    display:inline-block; margin-top:32px;
+    background:var(--red); color:#fff; font-weight:600; font-size:14px;
+    padding:14px 26px; border-radius:4px; border:none; cursor:pointer;
+    transition:background .15s ease;
+  }
+  .btn:hover{background:var(--red-dark);}
+  .btn.secondary{background:transparent; color:var(--ink); border:1px solid var(--line);}
+  .btn.secondary:hover{border-color:var(--ink);}
+
+  .principle-line{
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding:28px 0; display:flex; gap:40px; flex-wrap:wrap;
+  }
+  .principle-line div{font-size:13px; color:var(--ink-soft);}
+  .principle-line strong{display:block; font-family:'Fraunces',serif; font-size:22px; color:var(--ink); font-weight:600;}
+
+  /* CARDS */
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:8px;
+    padding:28px;
+  }
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media(max-width:640px){.grid{grid-template-columns:1fr;}}
+
+  /* MISSAO DO DIA (signature element) */
+  .missao{
+    background:var(--ink); color:#F4F1EA; border-radius:10px;
+    padding:48px 40px; position:relative; overflow:hidden;
+  }
+  .missao::before{
+    content:""; position:absolute; top:-40%; right:-10%; width:300px; height:300px;
+    border-radius:50%; background:radial-gradient(circle, rgba(161,29,46,0.35), transparent 70%);
+  }
+  .missao .eyebrow{color:#E7A2AC;}
+  .missao h2{font-size:34px; color:#fff; margin-bottom:6px;}
+  .missao .tempo{font-size:12px; color:#B9B6AD; margin-bottom:22px;}
+  .missao .caso{font-size:14px; color:#D7D4CB; max-width:560px; margin-bottom:26px;}
+  .missao .pergunta{
+    font-family:'Fraunces', serif; font-size:19px; font-weight:600;
+    border-top:1px solid rgba(255,255,255,0.15); padding-top:22px;
+  }
+
+  /* FUNDAMENTOS */
+  .concept-list{display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden;}
+  .concept-row{
+    background:var(--card); padding:18px 22px; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center;
+    transition:background .15s ease;
+  }
+  .concept-row:hover{background:#F5F2ED;}
+  .concept-row h3{font-size:17px; font-weight:600;}
+  .concept-row .arrow{color:var(--ink-soft); font-size:18px; transition:transform .2s ease;}
+  .concept-row.open .arrow{transform:rotate(90deg); color:var(--red);}
+  .concept-detail{
+    background:#fff; padding:0 22px; max-height:0; overflow:hidden;
+    transition:max-height .3s ease, padding .3s ease;
+  }
+  .concept-detail.open{padding:4px 22px 26px; max-height:600px;}
+  .concept-detail .field{margin-bottom:14px;}
+  .concept-detail .field b{
+    display:block; font-size:11px; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--red); margin-bottom:4px; font-weight:600;
+  }
+  .concept-detail .field p, .concept-detail .field li{font-size:14px; color:var(--ink-soft); line-height:1.55;}
+  .concept-detail ul{padding-left:18px;}
+
+  /* CHECKLIST DIÁRIO */
+  .check-item{
+    display:flex; align-items:center; gap:14px;
+    padding:14px 4px; border-bottom:1px solid var(--line);
+    cursor:pointer; user-select:none;
+  }
+  .check-item:last-child{border-bottom:none;}
+  .box{
+    width:20px; height:20px; border:1.5px solid var(--ink-soft); border-radius:4px;
+    flex-shrink:0; display:flex; align-items:center; justify-content:center;
+    transition:all .15s ease;
+  }
+  .check-item.done .box{background:var(--red); border-color:var(--red);}
+  .check-item.done .box::after{content:"✓"; color:#fff; font-size:12px;}
+  .check-item.done span.label{color:var(--ink-soft); text-decoration:line-through;}
+  .check-item span.label{font-size:15px;}
+
+  .stat-row{display:flex; gap:24px; margin-top:32px; flex-wrap:wrap;}
+  .stat{background:var(--card); border:1px solid var(--line); border-radius:8px; padding:20px 24px; flex:1; min-width:140px;}
+  .stat .num{font-family:'Fraunces',serif; font-size:32px; font-weight:700; color:var(--red);}
+  .stat .lab{font-size:12px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.06em; margin-top:4px;}
+
+  /* EVOLUÇÃO */
+  .history-list{display:flex; flex-direction:column; gap:10px; margin-top:24px;}
+  .history-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:14px 18px; background:var(--card); border:1px solid var(--line); border-radius:6px; font-size:14px;
+  }
+  .history-row .date{color:var(--ink-soft); font-size:12px;}
+  .empty{color:var(--ink-soft); font-size:14px; padding:20px 0;}
+
+  /* COMUNIDADE */
+  .mural-post{
+    background:var(--card); border:1px solid var(--line); border-radius:8px;
+    padding:22px; margin-bottom:14px;
+  }
+  .mural-post .meta{font-size:12px; color:var(--ink-soft); margin-bottom:8px;}
+  .mural-post p{font-size:15px;}
+  textarea{
+    width:100%; border:1px solid var(--line); border-radius:6px; padding:14px;
+    font-family:'Inter',sans-serif; font-size:14px; resize:vertical; min-height:80px;
+    background:var(--card);
+  }
+  textarea:focus{outline:none; border-color:var(--red);}
+
+  /* BIBLIOTECA */
+  .lib-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  @media(max-width:640px){.lib-grid{grid-template-columns:1fr 1fr;}}
+  .lib-tile{
+    background:var(--card); border:1px solid var(--line); border-radius:8px;
+    padding:22px 18px; text-align:center; font-size:14px; font-weight:600;
+    cursor:pointer; transition:border-color .15s ease, background .15s ease;
+  }
+  .lib-tile:hover{border-color:var(--red); background:#FBF5F6;}
+  .lib-tile .count{
+    display:block; margin-top:4px; font-size:11px; font-weight:500;
+    color:var(--ink-soft);
+  }
+  .lib-back{
+    display:inline-flex; align-items:center; gap:6px; cursor:pointer;
+    font-size:13px; font-weight:600; color:var(--ink-soft); margin-bottom:20px;
+  }
+  .lib-back:hover{color:var(--red);}
+  .lib-detail-title{font-size:28px; margin-bottom:24px;}
+  .lib-article{
+    background:var(--card); border:1px solid var(--line); border-radius:8px;
+    padding:26px; margin-bottom:16px;
+  }
+  .lib-article h3{font-size:17px; font-weight:600; margin-bottom:10px;}
+  .lib-article p{font-size:14px; color:var(--ink-soft); line-height:1.6;}
+  .lib-article .aplicacao{
+    margin-top:14px; padding-top:14px; border-top:1px solid var(--line);
+  }
+  .lib-article .aplicacao b{
+    display:block; font-size:11px; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--red); margin-bottom:4px; font-weight:600;
+  }
+  .lib-article .aplicacao p{color:var(--ink);}
+
+  footer{border-top:1px solid var(--line); padding:32px 0; text-align:center; font-size:12px; color:var(--ink-soft);}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">Conquistando a <span>Perfeição</span></div>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-page="home">Início</button>
+      <button class="tab" data-page="fundamentos">Fundamentos</button>
+      <button class="tab" data-page="perfeicao">Conquistando a Perfeição</button>
+      <button class="tab" data-page="evolucao">Minha Evolução</button>
+      <button class="tab" data-page="comunidade">Comunidade</button>
+      <button class="tab" data-page="biblioteca">Biblioteca</button>
+    </div>
+  </nav>
+</header>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <section class="hero wrap">
+    <h1>A excelência não acontece por acaso.<br>Ela é construída diariamente.</h1>
+    <p>Uma ferramenta simples e diária para transformar liderança, responsabilidade e excelência em prática, em todo o ecossistema Beira Rio.</p>
+    <button class="btn" onclick="goTo('perfeicao')">Começar minha evolução</button>
+  </section>
+
+  <section class="wrap tight">
+    <div class="principle-line">
+      <div><strong>1 conceito</strong> por dia</div>
+      <div><strong>40 seg</strong> de leitura</div>
+      <div><strong>1 ação</strong> prática aplicada hoje</div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <span class="eyebrow">Missão de hoje</span>
+    <div class="missao" id="missao-home"></div>
+  </section>
+</div>
+
+<!-- FUNDAMENTOS -->
+<div class="page" id="page-fundamentos">
+  <section class="wrap">
+    <span class="eyebrow">Fundamentos</span>
+    <h2 style="font-size:30px; margin-bottom:8px;">Conceitos aplicados</h2>
+    <p style="color:var(--ink-soft); font-size:15px; margin-bottom:32px; max-width:520px;">Cada conceito é lido em até 3 minutos e termina em uma aplicação prática. Toque para abrir.</p>
+    <div class="concept-list" id="concept-list"></div>
+  </section>
+</div>
+
+<!-- CONQUISTANDO A PERFEIÇÃO (diário) -->
+<div class="page" id="page-perfeicao">
+  <section class="wrap">
+    <span class="eyebrow">Conquistando a Perfeição</span>
+    <h2 style="font-size:30px; margin-bottom:24px;">Hoje eu:</h2>
+    <div class="card" id="checklist-card"></div>
+    <div class="stat-row" id="stat-row"></div>
+  </section>
+</div>
+
+<!-- MINHA EVOLUÇÃO -->
+<div class="page" id="page-evolucao">
+  <section class="wrap">
+    <span class="eyebrow">Minha Evolução</span>
+    <h2 style="font-size:30px; margin-bottom:24px;">Histórico</h2>
+    <div class="stat-row" id="stat-row-2"></div>
+    <div class="history-list" id="history-list"></div>
+  </section>
+</div>
+
+<!-- COMUNIDADE -->
+<div class="page" id="page-comunidade">
+  <section class="wrap">
+    <span class="eyebrow">Comunidade</span>
+    <h2 style="font-size:30px; margin-bottom:8px;">Mural de melhorias</h2>
+    <p style="color:var(--ink-soft); font-size:15px; margin-bottom:28px;">Compartilhe uma melhoria realizada hoje.</p>
+    <textarea id="mural-input" placeholder="Ex.: Reorganizamos o estoque e reduzimos o tempo de separação."></textarea>
+    <button class="btn" style="margin-top:12px;" onclick="postMural()">Publicar</button>
+    <div id="mural-list" style="margin-top:32px;"></div>
+  </section>
+</div>
+
+<!-- BIBLIOTECA -->
+<div class="page" id="page-biblioteca">
+  <section class="wrap" id="lib-view-grid">
+    <span class="eyebrow">Biblioteca</span>
+    <h2 style="font-size:30px; margin-bottom:24px;">Temas</h2>
+    <div class="lib-grid" id="lib-grid"></div>
+  </section>
+  <section class="wrap" id="lib-view-detail" style="display:none;">
+    <div class="lib-back" onclick="fecharTema()">‹ Voltar aos temas</div>
+    <span class="eyebrow">Biblioteca</span>
+    <h2 class="lib-detail-title" id="lib-detail-title"></h2>
+    <div id="lib-detail-articles"></div>
+  </section>
+</div>
+
+<footer>Conquistando a Perfeição — Calçados Beira Rio</footer>
+
+<script>
+/* ---------- DADOS ---------- */
+const CONCEITOS = [
+  {
+    nome:"Responsabilidade",
+    definicao:"Assumir integralmente as consequências das próprias decisões e ações, sem transferi-las a terceiros.",
+    aplicacao:"Antes de justificar um problema, pergunte primeiro o que estava sob o seu controle.",
+    exemplo:"Um encarregado que identifica uma falha em seu turno e a resolve antes de repassá-la ao turno seguinte.",
+    checklist:["Assumi o que era meu para resolver","Não transferi um problema que eu poderia solucionar","Comuniquei com clareza o que fiz"],
+    exercicio:"Identifique uma pendência que você tem adiado e finalize-a hoje."
+  },
+  {
+    nome:"Competência",
+    definicao:"Capacidade comprovada de executar uma função com domínio técnico e resultado consistente.",
+    aplicacao:"Competência se demonstra em resultado, não em intenção ou esforço declarado.",
+    exemplo:"Um operador que reduz o retrabalho ao dominar completamente o processo de sua estação.",
+    checklist:["Executei a tarefa dentro do padrão esperado","Busquei entender o motivo, não só o passo a passo","Corrigi um erro técnico antes que ele se repetisse"],
+    exercicio:"Escolha uma tarefa do seu dia e execute-a hoje com mais precisão técnica que ontem."
+  },
+  {
+    nome:"Inteligência",
+    definicao:"Capacidade de identificar o que é funcional para o resultado, entre várias opções possíveis.",
+    aplicacao:"Diante de um problema, a pergunta não é 'o que sinto', mas 'o que funciona'.",
+    exemplo:"Uma equipe que reorganiza o fluxo de um setor após observar onde o tempo era perdido.",
+    checklist:["Escolhi a opção mais funcional, não a mais fácil","Analisei antes de reagir","Identifiquei uma solução, não apenas um problema"],
+    exercicio:"Diante da próxima decisão do seu dia, escolha a opção mais funcional para o resultado."
+  },
+  {
+    nome:"Ordem",
+    definicao:"Organização lógica de espaço, tempo e prioridades, de forma que tudo tenha função e lugar.",
+    aplicacao:"Um ambiente ordenado reduz erro, tempo perdido e retrabalho.",
+    exemplo:"Uma linha de produção onde ferramentas e materiais têm posição fixa, eliminando busca desnecessária.",
+    checklist:["Organizei meu espaço de trabalho","Priorizei antes de agir","Deixei algo mais funcional do que encontrei"],
+    exercicio:"Organize um espaço, arquivo ou processo que estava fora de ordem."
+  },
+  {
+    nome:"Funcionalidade",
+    definicao:"Um processo, objeto ou comportamento vale pelo resultado que produz, não pela forma.",
+    aplicacao:"Pergunte sempre: isso está servindo ao resultado ou apenas repetindo um hábito?",
+    exemplo:"A eliminação de uma etapa de um processo que não agregava valor ao produto final.",
+    checklist:["Eliminei uma etapa ou hábito que não gerava resultado","Simplifiquei algo sem perder qualidade","Escolhi o que funciona, não o que é habitual"],
+    exercicio:"Identifique uma etapa do seu trabalho que pode ser simplificada sem perda de qualidade."
+  },
+  {
+    nome:"Precisão",
+    definicao:"Executar exatamente o que a situação exige, sem excesso nem falta.",
+    aplicacao:"Precisão é o oposto de aproximação: exige atenção ao detalhe que faz diferença.",
+    exemplo:"Um controle de qualidade que identifica uma variação mínima antes que ela se torne defeito.",
+    checklist:["Prestei atenção a um detalhe que normalmente ignoro","Corrigi uma imprecisão antes que gerasse erro","Entreguei exatamente o que foi solicitado"],
+    exercicio:"Onde você pode ser mais preciso hoje?"
+  },
+  {
+    nome:"Identidade",
+    definicao:"Coerência entre o que se pensa, se diz e se faz, no papel que se exerce.",
+    aplicacao:"Agir de acordo com a função que se ocupa, não com o humor do momento.",
+    exemplo:"Um líder que mantém o mesmo padrão de exigência consigo e com a equipe.",
+    checklist:["Agi de acordo com a minha função, não com o meu humor","Fui coerente entre o que disse e o que fiz","Mantive meu padrão mesmo sob pressão"],
+    exercicio:"Identifique um momento hoje em que sua ação deve refletir sua função, não seu humor."
+  },
+  {
+    nome:"Evolução",
+    definicao:"Movimento constante de melhoria em relação ao próprio padrão anterior.",
+    aplicacao:"Evolução se mede comparando o hoje com o ontem, não com o outro.",
+    exemplo:"Um profissional que revisa seu próprio processo mensalmente, buscando reduzir uma falha recorrente.",
+    checklist:["Fiz algo melhor do que fiz ontem","Aprendi algo novo aplicável ao trabalho","Corrigi um padrão, não apenas um evento isolado"],
+    exercicio:"O que você pode fazer hoje um pouco melhor do que fez ontem?"
+  },
+  {
+    nome:"Liderança",
+    definicao:"Capacidade de conduzir pessoas e processos rumo a um resultado funcional, assumindo a responsabilidade por isso.",
+    aplicacao:"Liderar é gerar clareza e direção, não apenas autoridade.",
+    exemplo:"Um supervisor que orienta sua equipe apresentando o problema, a causa e o caminho de solução.",
+    checklist:["Dei clareza sobre um objetivo à minha equipe","Assumi a responsabilidade por um resultado do grupo","Orientei alguém com foco em solução, não em cobrança"],
+    exercicio:"Dê a alguém uma orientação clara e objetiva hoje, com foco em resultado."
+  },
+  {
+    nome:"Mérito",
+    definicao:"Reconhecimento proporcional ao resultado real produzido, não ao esforço declarado.",
+    aplicacao:"O mérito se conquista com entrega, não se reivindica com discurso.",
+    exemplo:"Uma equipe que é reconhecida por reduzir efetivamente o desperdício de um processo.",
+    checklist:["Entreguei algo mensurável hoje","Reconheci o mérito de outra pessoa pelo resultado dela","Evitei reivindicar mérito sem entrega concreta"],
+    exercicio:"Entregue hoje um resultado concreto, mensurável, antes de comunicá-lo."
+  },
+  {
+    nome:"Resultado",
+    definicao:"A finalidade real de toda ação: o que efetivamente se produziu, e não a intenção por trás dela.",
+    aplicacao:"Toda ação deve ser avaliada pelo que ela gerou, de forma objetiva.",
+    exemplo:"Um processo revisado que reduz, de forma mensurável, o tempo de entrega.",
+    checklist:["Produzi um resultado mensurável hoje","Avaliei uma ação pelo que ela gerou, não pela intenção","Corrigi o curso de algo que não estava gerando resultado"],
+    exercicio:"Escolha uma ação do seu dia e meça objetivamente o resultado dela."
+  },
+  {
+    nome:"Serviço",
+    definicao:"Colocar a própria competência à disposição de um resultado maior que o individual.",
+    aplicacao:"Servir é contribuir com o que se sabe fazer melhor, para o resultado do conjunto.",
+    exemplo:"Um profissional que compartilha uma solução com outro setor que enfrenta o mesmo problema.",
+    checklist:["Contribuí com algo além da minha função imediata","Compartilhei um conhecimento com um colega","Ajudei alguém a resolver um problema real"],
+    exercicio:"Compartilhe hoje uma solução ou conhecimento que pode ajudar outra pessoa ou setor."
+  },
+  {
+    nome:"Excelência",
+    definicao:"O padrão mais alto de execução que a situação permite, sustentado de forma constante.",
+    aplicacao:"Excelência é a busca constante da perfeição, aplicada todos os dias, não apenas em um momento isolado.",
+    exemplo:"Uma unidade que mantém o mesmo padrão de qualidade mês após mês, não apenas em auditorias.",
+    checklist:["Mantive o padrão mais alto possível hoje","Não relaxei o padrão por estar sem supervisão","Busquei o melhor resultado possível na situação"],
+    exercicio:"Escolha uma tarefa hoje e execute-a no seu padrão mais alto possível, sem exceções."
+  }
+];
+
+const CHECK_ITEMS = [
+  "organizei melhor meu ambiente",
+  "eliminei desperdício",
+  "resolvi um problema",
+  "entreguei qualidade",
+  "aprendi algo novo",
+  "ajudei alguém",
+  "melhorei algum processo"
+];
+
+const TEMAS = [
+  { nome:"Liderança", artigos:[
+    {titulo:"Dar direção, não apenas ordens", texto:"Liderar é tornar claro o que precisa ser feito e por quê. Uma equipe que entende o objetivo decide melhor sozinha, sem depender de instrução constante.", aplicacao:"Antes de delegar uma tarefa hoje, explique o resultado esperado, não apenas o passo a passo."},
+    {titulo:"Exigência com coerência", texto:"Um líder mantém o mesmo padrão para si e para a equipe. Cobrar algo que não se pratica corrói a autoridade construída.", aplicacao:"Revise se você está pedindo de outros o que também exige de si mesmo."},
+    {titulo:"Presença antes de cobrança", texto:"Um líder ausente que só aparece para cobrar resultado perde a confiança da equipe. Presença constante no dia a dia é o que sustenta a autoridade de cobrar depois.", aplicacao:"Passe hoje alguns minutos a mais no chão de fábrica ou no setor, apenas observando e ouvindo, antes de dar qualquer instrução."}
+  ]},
+  { nome:"Excelência", artigos:[
+    {titulo:"Padrão constante, não pontual", texto:"Excelência não é um dia perfeito sob supervisão. É o mesmo nível de entrega quando ninguém está observando.", aplicacao:"Escolha uma tarefa de rotina hoje e execute-a como se fosse ser auditada."},
+    {titulo:"O detalhe que ninguém pede", texto:"O padrão mais alto normalmente aparece onde não é exigido — no acabamento, na organização, na atenção extra.", aplicacao:"Identifique um detalhe do seu trabalho que costuma passar despercebido e cuide dele hoje."},
+    {titulo:"A perfeição se conquista todos os dias", texto:"Perfeição não é um destino final, é um padrão que se persegue diariamente, entrega após entrega. Cada tarefa concluída no mais alto nível possível é um passo real nessa direção.", aplicacao:"Escolha uma entrega de hoje e leve-a até o ponto em que você não veja mais nada a melhorar."}
+  ]},
+  { nome:"Qualidade", artigos:[
+    {titulo:"Prevenir custa menos que corrigir", texto:"Um erro identificado na origem custa uma fração do que custaria se chegasse ao cliente final.", aplicacao:"Antes de finalizar uma entrega hoje, faça uma verificação extra de dez segundos."},
+    {titulo:"Qualidade é consistência, não sorte", texto:"Um bom resultado isolado não garante qualidade. Qualidade é o mesmo resultado, repetido, sob as mesmas regras.", aplicacao:"Documente um passo do seu processo que ainda depende de 'lembrar de cabeça'."},
+    {titulo:"O padrão pertence a quem executa", texto:"Delegar qualidade só para a inspeção final é aceitar erro como parte do processo. Quem produz é quem melhor garante o padrão, etapa por etapa.", aplicacao:"Antes de passar sua entrega adiante hoje, confira você mesmo o item como se fosse o inspetor final."}
+  ]},
+  { nome:"Organização", artigos:[
+    {titulo:"Lugar certo, tempo certo", texto:"Um ambiente organizado elimina a busca, o improviso e o tempo perdido procurando o que já deveria estar à mão.", aplicacao:"Reorganize um espaço, gaveta ou pasta que você usa todos os dias."},
+    {titulo:"Prioridade antes de ação", texto:"Organização também é mental: decidir o que vem primeiro antes de começar a agir.", aplicacao:"Liste as três tarefas mais importantes do seu dia antes de abrir qualquer outra coisa."},
+    {titulo:"Terminar antes de começar outra", texto:"Várias tarefas iniciadas e nenhuma concluída é desorganização disfarçada de produtividade. Terminar o que foi começado libera espaço real na cabeça e no processo.", aplicacao:"Escolha uma tarefa que você deixou pela metade e conclua-a antes de iniciar qualquer coisa nova hoje."}
+  ]},
+  { nome:"Lean", artigos:[
+    {titulo:"Eliminar o que não gera valor", texto:"Todo processo tem etapas que existem por hábito, não por necessidade. Identificá-las é o primeiro passo para simplificar.", aplicacao:"Escolha uma etapa do seu processo e pergunte: o cliente notaria se ela não existisse?"},
+    {titulo:"Fluxo contínuo", texto:"Interrupções e esperas custam mais do que parecem. Um fluxo contínuo reduz erro e tempo de entrega.", aplicacao:"Identifique hoje uma espera desnecessária entre duas etapas do seu trabalho."},
+    {titulo:"Estoque parado é problema escondido", texto:"Material ou trabalho parado entre etapas esconde desequilíbrios no processo. Reduzir o estoque intermediário expõe o problema real antes que ele cresça.", aplicacao:"Observe hoje onde há material ou tarefas acumuladas esperando a próxima etapa, e pergunte por quê."}
+  ]},
+  { nome:"Kaizen", artigos:[
+    {titulo:"Melhoria pequena, todos os dias", texto:"Kaizen não exige grandes mudanças. Exige constância: um ajuste pequeno, repetido diariamente, supera uma reforma pontual.", aplicacao:"Faça hoje um ajuste pequeno em algo que você repete todos os dias."},
+    {titulo:"Quem faz, melhora", texto:"Quem executa a tarefa é quem mais enxerga onde ela pode melhorar — por isso a melhoria deve vir de quem está nela.", aplicacao:"Registre uma ideia de melhoria sobre algo que só você percebe no seu processo."},
+    {titulo:"Medir para saber se melhorou", texto:"Uma mudança sem número antes e depois é opinião, não melhoria comprovada. Medir o resultado é o que transforma um ajuste em kaizen de verdade.", aplicacao:"Antes de aplicar um ajuste hoje, anote o tempo ou resultado atual para comparar depois."}
+  ]},
+  { nome:"Segurança", artigos:[
+    {titulo:"Risco identificado é risco reduzido", texto:"A maioria dos acidentes tem sinais anteriores ignorados. Notar o risco antes de agir é a primeira forma de prevenção.", aplicacao:"Observe hoje um risco no seu ambiente que normalmente você ignora."},
+    {titulo:"Segurança não se negocia com pressa", texto:"Pressa é a justificativa mais comum para pular uma etapa de segurança — e a mais cara quando algo dá errado.", aplicacao:"Identifique uma etapa de segurança que você às vezes pula por pressa e cumpra-a hoje."},
+    {titulo:"Corrigir sem esperar o acidente", texto:"Uma condição insegura reportada e ignorada é um acidente adiado, não evitado. Corrigir na hora vale mais do que registrar e esperar.", aplicacao:"Se você notar uma condição insegura hoje, resolva-a ou comunique imediatamente, sem deixar para depois."}
+  ]},
+  { nome:"Atendimento", artigos:[
+    {titulo:"Resolver, não apenas responder", texto:"Atender bem é resolver o problema da outra pessoa, não apenas dar uma resposta educada.", aplicacao:"No próximo atendimento hoje, pergunte-se se a resposta realmente resolve ou apenas encerra a conversa."},
+    {titulo:"Clareza é respeito", texto:"Informação confusa ou incompleta transfere trabalho para quem está do outro lado.", aplicacao:"Revise uma mensagem antes de enviá-la: ela está clara para quem não sabe o que você sabe?"},
+    {titulo:"O tom fica, mesmo depois da solução", texto:"A pessoa pode esquecer o problema, mas lembra como foi tratada enquanto ele durou. Um atendimento seco anula até uma solução correta.", aplicacao:"No próximo contato hoje, cuide do tom tanto quanto do conteúdo da resposta."}
+  ]},
+  { nome:"Desenvolvimento Humano", artigos:[
+    {titulo:"Crescer é ampliar responsabilidade", texto:"Desenvolvimento real se mede pela capacidade de assumir mais responsabilidade com mais autonomia, não apenas por conhecimento acumulado.", aplicacao:"Identifique uma responsabilidade que você pode assumir hoje sem esperar ser solicitado."},
+    {titulo:"Ensinar é multiplicar", texto:"Quem ensina o que sabe multiplica sua própria competência dentro da equipe.", aplicacao:"Compartilhe hoje com um colega algo que você sabe fazer bem."},
+    {titulo:"Feedback é ferramenta, não julgamento", texto:"Dar retorno sobre um erro sem apontar caminho de melhora é só crítica. Feedback que desenvolve mostra o problema e a próxima ação.", aplicacao:"Se for dar um retorno hoje, inclua sempre o que a pessoa pode fazer diferente da próxima vez."}
+  ]}
+];
+
+const MURAL_SEED = [
+  {autor:"Unidade Industrial", texto:"Reorganizamos o estoque e reduzimos o tempo de separação de pedidos.", data:"há 2 dias"},
+  {autor:"Setor de Costura", texto:"Padronizamos um novo método de conferência que reduziu o retrabalho.", data:"há 4 dias"},
+  {autor:"Expedição", texto:"Criamos um novo padrão de embalagem que reduz o desperdício de material.", data:"há 6 dias"}
+];
+
+/* ---------- ESTADO (localStorage) ---------- */
+const todayKey = () => new Date().toISOString().slice(0,10);
+function loadHistory(){ return JSON.parse(localStorage.getItem('cp_history')||'{}'); }
+function saveHistory(h){ localStorage.setItem('cp_history', JSON.stringify(h)); }
+function loadMural(){
+  const stored = localStorage.getItem('cp_mural');
+  return stored ? JSON.parse(stored) : MURAL_SEED;
+}
+function saveMural(m){ localStorage.setItem('cp_mural', JSON.stringify(m)); }
+
+function conceitoDoDia(){
+  const start = new Date('2026-01-01');
+  const now = new Date();
+  const diff = Math.floor((now-start)/86400000);
+  return CONCEITOS[diff % CONCEITOS.length];
+}
+
+/* ---------- NAVEGAÇÃO ---------- */
+function goTo(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.querySelector(`.tab[data-page="${page}"]`).classList.add('active');
+  if(page==='evolucao') renderEvolucao();
+  if(page==='comunidade') renderMural();
+  if(page==='biblioteca') fecharTema();
+}
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>goTo(t.dataset.page)));
+
+/* ---------- HOME: missão do dia ---------- */
+function renderMissaoHome(){
+  const c = conceitoDoDia();
+  document.getElementById('missao-home').innerHTML = `
+    <span class="eyebrow">Conceito do dia</span>
+    <h2>${c.nome}</h2>
+    <div class="tempo">Leitura de 40 segundos</div>
+    <div class="caso">${c.exemplo}</div>
+    <div class="pergunta">${c.exercicio}</div>
+  `;
+}
+
+/* ---------- FUNDAMENTOS ---------- */
+function renderFundamentos(){
+  const el = document.getElementById('concept-list');
+  el.innerHTML = CONCEITOS.map((c,i)=>`
+    <div>
+      <div class="concept-row" onclick="toggleConcept(${i})" id="row-${i}">
+        <h3>${c.nome}</h3>
+        <span class="arrow">›</span>
+      </div>
+      <div class="concept-detail" id="detail-${i}">
+        <div class="field"><b>Definição</b><p>${c.definicao}</p></div>
+        <div class="field"><b>Aplicação prática</b><p>${c.aplicacao}</p></div>
+        <div class="field"><b>Exemplo da indústria</b><p>${c.exemplo}</p></div>
+        <div class="field"><b>Checklist</b><ul>${c.checklist.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+        <div class="field"><b>Exercício do dia</b><p>${c.exercicio}</p></div>
+      </div>
+    </div>
+  `).join('');
+}
+function toggleConcept(i){
+  document.getElementById('row-'+i).classList.toggle('open');
+  document.getElementById('detail-'+i).classList.toggle('open');
+}
+
+/* ---------- CHECKLIST DIÁRIO ---------- */
+function renderChecklist(){
+  const hist = loadHistory();
+  const today = todayKey();
+  const todayData = hist[today] || {};
+  document.getElementById('checklist-card').innerHTML = CHECK_ITEMS.map((item,i)=>`
+    <div class="check-item ${todayData[i]?'done':''}" onclick="toggleCheck(${i})">
+      <div class="box"></div>
+      <span class="label">${item}</span>
+    </div>
+  `).join('');
+  renderStats();
+}
+function toggleCheck(i){
+  const hist = loadHistory();
+  const today = todayKey();
+  hist[today] = hist[today] || {};
+  hist[today][i] = !hist[today][i];
+  saveHistory(hist);
+  renderChecklist();
+}
+function computeStreak(hist){
+  let streak = 0;
+  let d = new Date();
+  while(true){
+    const key = d.toISOString().slice(0,10);
+    const day = hist[key];
+    const anyChecked = day && Object.values(day).some(Boolean);
+    if(anyChecked){ streak++; d.setDate(d.getDate()-1); }
+    else break;
+  }
+  return streak;
+}
+function renderStats(){
+  const hist = loadHistory();
+  const today = todayKey();
+  const todayData = hist[today] || {};
+  const doneToday = Object.values(todayData).filter(Boolean).length;
+  const streak = computeStreak(hist);
+  const totalDays = Object.keys(hist).filter(k=>Object.values(hist[k]).some(Boolean)).length;
+  const html = `
+    <div class="stat"><div class="num">${doneToday}/${CHECK_ITEMS.length}</div><div class="lab">Hoje</div></div>
+    <div class="stat"><div class="num">${streak}</div><div class="lab">Dias consecutivos</div></div>
+    <div class="stat"><div class="num">${totalDays}</div><div class="lab">Dias com registro</div></div>
+  `;
+  document.getElementById('stat-row').innerHTML = html;
+}
+
+/* ---------- EVOLUÇÃO ---------- */
+function renderEvolucao(){
+  const hist = loadHistory();
+  const streak = computeStreak(hist);
+  const dates = Object.keys(hist).filter(k=>Object.values(hist[k]).some(Boolean)).sort().reverse();
+  document.getElementById('stat-row-2').innerHTML = `
+    <div class="stat"><div class="num">${streak}</div><div class="lab">Dias consecutivos</div></div>
+    <div class="stat"><div class="num">${dates.length}</div><div class="lab">Total de dias registrados</div></div>
+  `;
+  const list = document.getElementById('history-list');
+  if(dates.length===0){
+    list.innerHTML = `<div class="empty">Nenhum registro ainda. Comece em "Conquistando a Perfeição".</div>`;
+    return;
+  }
+  list.innerHTML = dates.map(d=>{
+    const count = Object.values(hist[d]).filter(Boolean).length;
+    return `<div class="history-row"><span>${count} de ${CHECK_ITEMS.length} ações realizadas</span><span class="date">${d}</span></div>`;
+  }).join('');
+}
+
+/* ---------- COMUNIDADE ---------- */
+function renderMural(){
+  const posts = loadMural();
+  document.getElementById('mural-list').innerHTML = posts.map(p=>`
+    <div class="mural-post">
+      <div class="meta">${p.autor} · ${p.data}</div>
+      <p>${p.texto}</p>
+    </div>
+  `).join('');
+}
+function postMural(){
+  const input = document.getElementById('mural-input');
+  const texto = input.value.trim();
+  if(!texto) return;
+  const posts = loadMural();
+  posts.unshift({autor:"Você", texto, data:"agora"});
+  saveMural(posts);
+  input.value='';
+  renderMural();
+}
+
+/* ---------- BIBLIOTECA ---------- */
+function renderBiblioteca(){
+  document.getElementById('lib-grid').innerHTML = TEMAS.map((t,i)=>`
+    <div class="lib-tile" onclick="abrirTema(${i})">
+      ${t.nome}
+      <span class="count">${t.artigos.length} artigo${t.artigos.length>1?'s':''}</span>
+    </div>
+  `).join('');
+}
+function abrirTema(i){
+  const t = TEMAS[i];
+  document.getElementById('lib-detail-title').textContent = t.nome;
+  document.getElementById('lib-detail-articles').innerHTML = t.artigos.map(a=>`
+    <div class="lib-article">
+      <h3>${a.titulo}</h3>
+      <p>${a.texto}</p>
+      <div class="aplicacao">
+        <b>Aplicação prática</b>
+        <p>${a.aplicacao}</p>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('lib-view-grid').style.display = 'none';
+  document.getElementById('lib-view-detail').style.display = 'block';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function fecharTema(){
+  document.getElementById('lib-view-detail').style.display = 'none';
+  document.getElementById('lib-view-grid').style.display = 'block';
+}
+
+/* ---------- INIT ---------- */
+renderMissaoHome();
+renderFundamentos();
+renderChecklist();
+renderBiblioteca();
+</script>
+</body>
+</html>
