@@ -230,12 +230,13 @@
   /* ============ RESPONSIVO — CELULAR / TABLET ============ */
   /* Fica no fim do CSS de propósito para vencer as regras "desktop" acima. */
   @media(max-width:640px){
-    .wrap{padding:0 18px;}
+    .wrap{padding:0 22px;}
 
-    nav.wrap{height:auto; padding-top:10px; padding-bottom:8px; flex-wrap:wrap; gap:6px;}
+    nav.wrap{height:auto; padding-top:12px; padding-bottom:10px; flex-wrap:wrap; gap:8px 0;}
     .brand{font-size:15px; width:100%;}
-    .tabs{width:100%; justify-content:flex-start; -webkit-mask-image:linear-gradient(to right, black 92%, transparent 100%);}
-    .tab{font-size:12.5px; padding:7px 11px;}
+    .tabs{width:100%; justify-content:flex-start; flex-wrap:wrap; overflow-x:visible; gap:6px;}
+    .tab{font-size:12px; padding:7px 10px; background:#F0EDE6;}
+    .tab.active{background:#F4E6E8;}
 
     section{padding:40px 0;}
     section.tight{padding:24px 0;}
@@ -774,3 +775,4 @@ renderBiblioteca();
 </script>
 </body>
 </html>
+
