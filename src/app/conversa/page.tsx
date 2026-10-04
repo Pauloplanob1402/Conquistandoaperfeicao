@@ -9,13 +9,14 @@ async function perguntar(fd: FormData) {
   if (texto.length < 8) redirect('/conversa?curta=1');
   const { supabase, user } = await getPerfil();
   const { data } = await supabase.from('respostas').select('*');
+  if (!data || data.length === 0) redirect(`/conversa?q=${encodeURIComponent(texto)}&vazio=1`);
   const [melhor] = buscar(texto, (data ?? []) as Resposta[], 1);
   const achou = melhor && melhor.pontos >= LIMITE_MINIMO;
   await supabase.from('conversas').insert({ usuario_id: user?.id, pergunta: texto, resposta_id: achou ? melhor.resposta.id : null, pontuacao: melhor?.pontos ?? 0 });
   redirect(`/conversa?q=${encodeURIComponent(texto)}${achou ? `&r=${melhor.resposta.id}` : '&sem=1'}`);
 }
 
-export default async function Conversa({ searchParams }: { searchParams: Promise<{ q?: string; r?: string; sem?: string; curta?: string }> }) {
+export default async function Conversa({ searchParams }: { searchParams: Promise<{ q?: string; r?: string; sem?: string; curta?: string; vazio?: string }> }) {
   const sp = await searchParams;
   const { supabase } = await getPerfil();
   let atual: Resposta | null = null;
@@ -36,6 +37,9 @@ export default async function Conversa({ searchParams }: { searchParams: Promise
         {sp.curta && <p className="aviso">Conte um pouco mais sobre a situação, com pelo menos uma frase.</p>}
         <p><button type="submit">Receber orientação</button></p>
       </form>
+      {sp.vazio && (
+        <p className="aviso" style={{ maxWidth: '42rem' }}>Ainda não há orientações liberadas. Quem administra a plataforma precisa aprovar as respostas em Administração &gt; Respostas.</p>
+      )}
       {sp.sem && (
         <p className="aviso" style={{ maxWidth: '42rem' }}>Ainda não temos uma orientação para essa situação. Tente descrevê-la com outras palavras. Sua pergunta foi registrada para ampliarmos o conteúdo.</p>
       )}
