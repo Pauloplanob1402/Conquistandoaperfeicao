@@ -22,7 +22,8 @@ Rode também `supabase/migracao-02-conversas.sql` no SQL Editor. Depois, aprove 
 6. **Importar as respostas (no seu computador):** `cp .env.example .env.local`, preencha as chaves (incluindo `SUPABASE_SERVICE_ROLE_KEY`), `npm install` e `npm run importar`.
 7. **Primeiro administrador:** crie seu acesso em `/cadastro` e, no SQL Editor, rode:
    `update public.perfis set tipo = 'admin' where id = (select id from auth.users where email = 'seu@email.com');`
-8. Entre em `/admin`, cadastre as unidades e revise as respostas (status: rascunho, em revisão, aprovada).
+8. Rode `supabase/seed-unidades.sql` no SQL Editor para cadastrar as 13 filiais (ou use `/admin/unidades`).
+9. Entre em `/admin`, confira as unidades e revise as respostas (status: rascunho, em revisão, aprovada).
 
 ## Segurança
 - Só respostas **aprovadas** aparecem para usuários; administradores veem todas.
