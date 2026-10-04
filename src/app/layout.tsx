@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import Link from 'next/link';
 import './globals.css';
 import { getPerfil } from '@/lib/supabase/server';
@@ -6,7 +6,10 @@ import { getPerfil } from '@/lib/supabase/server';
 export const metadata: Metadata = {
   title: 'Conquistando a Perfeição · Calçados Beira Rio',
   description: 'Cultura que entra na rotina da liderança.',
+  icons: { icon: '/icon-192.png', apple: '/icon-192.png' },
 };
+
+export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#a3162b' };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { user, perfil } = await getPerfil();

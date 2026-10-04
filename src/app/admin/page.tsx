@@ -13,7 +13,7 @@ export default async function Resumo() {
       {temas.length === 0 ? (
         <p className="aviso">Nenhuma resposta cadastrada. Rode <code>npm run importar</code> para carregar as 200 respostas.</p>
       ) : (
-        <table>
+        <div className="rolagem"><table>
           <thead><tr><th>Tema</th><th>Rascunho</th><th>Em revisão</th><th>Aprovadas</th><th>Total</th></tr></thead>
           <tbody>
             {temas.map(t => (
@@ -22,7 +22,7 @@ export default async function Resumo() {
                 <td>{linhas.filter(l => l.tema === t).length}</td></tr>
             ))}
           </tbody>
-        </table>
+        </table></div>
       )}
     </main>
   );

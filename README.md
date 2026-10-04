@@ -19,7 +19,8 @@ Rode também `supabase/migracao-02-conversas.sql` no SQL Editor. Depois, aprove 
 4. **GitHub:** suba esta pasta (sem `node_modules`, `.next` ou `.env.local`).
 5. **Vercel:** importe o repositório e cadastre em Settings > Environment Variables:
    `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` e `NEXT_PUBLIC_SITE_URL`. Faça o deploy.
-6. **Importar as respostas (no seu computador):** `cp .env.example .env.local`, preencha as chaves (incluindo `SUPABASE_SERVICE_ROLE_KEY`), `npm install` e `npm run importar`.
+6. **Importar as respostas, jeito mais simples:** cole `supabase/importar-respostas.sql` no SQL Editor e rode (já deixa as 200 como aprovadas).
+   **Ou pelo computador:** `cp .env.example .env.local`, preencha as chaves (incluindo `SUPABASE_SERVICE_ROLE_KEY`), `npm install` e `npm run importar`.
 7. **Primeiro administrador:** crie seu acesso em `/cadastro` e, no SQL Editor, rode:
    `update public.perfis set tipo = 'admin' where id = (select id from auth.users where email = 'seu@email.com');`
 8. Rode `supabase/seed-unidades.sql` no SQL Editor para cadastrar as 13 filiais (ou use `/admin/unidades`).

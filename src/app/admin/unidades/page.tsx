@@ -21,8 +21,8 @@ export default async function Unidades() {
         <p><button type="submit">Adicionar unidade</button></p>
       </form>
       {lista.length === 0 ? <p className="aviso">Nenhuma unidade cadastrada. Cadastre as unidades para que apareçam no cadastro de acesso.</p> : (
-        <table><thead><tr><th>Unidade</th><th>Cidade</th></tr></thead>
-          <tbody>{lista.map(u => <tr key={u.id}><td>{u.nome}</td><td>{u.cidade}</td></tr>)}</tbody></table>
+        <div className="rolagem"><table><thead><tr><th>Unidade</th><th>Cidade</th></tr></thead>
+          <tbody>{lista.map(u => <tr key={u.id}><td>{u.nome}</td><td>{u.cidade}</td></tr>)}</tbody></table></div>
       )}
     </main>
   );

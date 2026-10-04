@@ -29,7 +29,7 @@ export default async function Respostas({ searchParams }: { searchParams: Promis
         <button type="submit">Filtrar</button>
       </form>
       <p>{linhas.length} respostas</p>
-      <table>
+      <div className="rolagem"><table>
         <thead><tr><th>Id</th><th>Pergunta</th><th>Tema</th><th>Camada</th><th>Status</th></tr></thead>
         <tbody>
           {linhas.map(l => (
@@ -37,7 +37,7 @@ export default async function Respostas({ searchParams }: { searchParams: Promis
               <td><span className={`selo ${l.status}`}>{l.status.replace('_', ' ')}</span></td></tr>
           ))}
         </tbody>
-      </table>
+      </table></div>
     </main>
   );
 }

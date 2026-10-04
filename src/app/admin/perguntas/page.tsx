@@ -16,13 +16,13 @@ export default async function Perguntas({ searchParams }: { searchParams: Promis
       <p>{sp.todas ? <Link href="/admin/perguntas">Ver só as sem resposta</Link> : <Link href="/admin/perguntas?todas=1">Ver todas</Link>}</p>
       <p style={{ color: 'var(--cinza)' }}>As perguntas sem resposta mostram onde falta conteúdo. Crie ou ajuste uma resposta e acrescente as palavras que a pessoa usou.</p>
       {linhas.length === 0 ? <p className="aviso ok">Nenhuma pergunta para mostrar.</p> : (
-        <table>
+        <div className="rolagem"><table>
           <thead><tr><th>Data</th><th>Pergunta</th><th>Resposta sugerida</th><th>Pontos</th></tr></thead>
           <tbody>{linhas.map(l => (
             <tr key={l.id}><td>{new Date(l.criado_em).toLocaleString('pt-BR')}</td><td>{l.pergunta}</td>
               <td>{l.resposta_id ? <Link href={`/admin/respostas/${l.resposta_id}`}>{l.resposta_id}</Link> : 'nenhuma'}</td><td>{l.pontuacao ?? 0}</td></tr>
           ))}</tbody>
-        </table>
+        </table></div>
       )}
     </main>
   );
