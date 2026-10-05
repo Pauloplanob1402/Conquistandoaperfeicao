@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
+import { Frase } from '@/components/Frase';
 
 async function entrar(fd: FormData) {
   'use server';
@@ -15,6 +16,7 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
   return (
     <main className="pagina estreito">
       <h1>Entrar</h1>
+      <Frase compacta />
       {sp.ok && <p className="aviso ok">Acesso criado. Confirme o e-mail que enviamos e entre em seguida.</p>}
       {sp.erro && <p className="aviso">Não foi possível entrar. Confira os dados e tente de novo.</p>}
       <form action={entrar}>

@@ -66,3 +66,14 @@ progress{height:10px}
 .usuario{display:grid;grid-template-columns:2fr 1.3fr 1fr auto auto;gap:.6rem;align-items:center;margin:.5rem 0}
 .check2{display:flex;gap:.4rem;align-items:center;margin:0;font-weight:400;white-space:nowrap}.check2 input{width:auto;min-height:0}
 @media(max-width:800px){.usuario{grid-template-columns:1fr 1fr}.usuario>div:first-child{grid-column:1/-1}}
+.hero{padding:clamp(1rem,4vw,3rem) 0 1rem}
+.kicker{color:var(--vermelho);font-weight:600;letter-spacing:.04em;font-size:.9rem;margin:0 0 .6rem}
+.botoes{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.4rem}
+.citacao{margin:2.5rem 0;padding:.4rem 0 .4rem 1.4rem;border-left:5px solid var(--vermelho-vivo);max-width:44rem}
+.citacao blockquote{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.3rem,3.2vw,1.9rem);line-height:1.35}
+.citacao figcaption{font-size:.95rem;font-weight:600;color:var(--cinza);margin-top:.8rem}
+.citacao.pequena{margin:1rem 0 1.5rem;padding-left:1rem;border-left-width:4px}.citacao.pequena blockquote{font-size:1.05rem;line-height:1.45}.citacao.pequena figcaption{font-size:.85rem;margin-top:.5rem}
+.historia{max-width:44rem;margin:2rem 0}
+.ciclo{list-style:none;padding:0;margin:1.2rem 0;display:grid;gap:.6rem;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.ciclo li{background:#fff;border:1px solid var(--linha);border-top:4px solid var(--cor);border-radius:8px;padding:.7rem .8rem}
+.ciclo li strong{display:block;font-family:Georgia,serif}.ciclo li small{color:var(--cinza)}
