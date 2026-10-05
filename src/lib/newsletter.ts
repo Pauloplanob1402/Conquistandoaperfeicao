@@ -16,7 +16,7 @@ export function montarHtml(e: Edicao, destaques: Destaque[], url: string): strin
 <div style="max-width:600px;margin:0 auto;padding:24px"><div style="font:700 14px Georgia,serif;color:#a3162b;letter-spacing:.5px">CONQUISTANDO A PERFEIÇÃO</div>
 <h1 style="font:700 26px Georgia,serif;margin:8px 0 18px">${esc(e.titulo)}</h1><p style="margin:0 0 14px;line-height:1.6">Olá, {{params.NOME}}!</p>${corpo}${dest}
 <p style="margin:28px 0 0"><a href="${url}" style="background:#a3162b;color:#fff;padding:12px 18px;border-radius:6px;text-decoration:none;font-weight:600">Ler na plataforma</a></p>
-<p style="color:#5a6472;font-size:12px;margin-top:24px">Cultura que entra na rotina da liderança.</p></div></body></html>`;
+<p style="color:#5a6472;font-size:12px;margin-top:24px">Dia a dia na fronteira da perfeição.</p></div></body></html>`;
 }
 
 export type Destinatario = { email: string; nome?: string | null };
