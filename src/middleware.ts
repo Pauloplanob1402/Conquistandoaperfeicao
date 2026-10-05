@@ -15,17 +15,23 @@ export async function middleware(req: NextRequest) {
       },
     },
   });
-  const { data: { user } } = await supabase.auth.getUser();
+  // Visitante sem cookie de login: nenhuma chamada de rede. Com cookie: o token é verificado localmente quando possível.
+  const temLogin = req.cookies.getAll().some(c => c.name.startsWith('sb-') && c.name.includes('auth-token'));
+  let userId: string | null = null;
+  if (temLogin) {
+    const { data } = await supabase.auth.getClaims();
+    userId = (data?.claims?.sub as string | undefined) ?? null;
+  }
   const p = req.nextUrl.pathname;
   const publica = p === '/' || ['/login', '/cadastro', '/esqueci', '/privacidade', '/termos', '/auth'].some(x => p.startsWith(x));
-  if (!user && !publica) {
+  if (!userId && !publica) {
     const url = req.nextUrl.clone();
     url.pathname = '/login';
     return NextResponse.redirect(url);
   }
-  if (user) {
+  if (userId) {
     const h = new Headers(base);
-    h.set('x-user-id', user.id);
+    h.set('x-user-id', userId);
     const novo = NextResponse.next({ request: { headers: h } });
     res.cookies.getAll().forEach(c => novo.cookies.set(c));
     res = novo;

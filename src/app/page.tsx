@@ -18,12 +18,9 @@ export default async function Home() {
   if (user) redirect('/inicio');
   return (
     <main className="pagina">
-      <section className="hero">
+      <section className="hero grande">
         <p className="kicker">Calçados Beira Rio · Conquistando a Perfeição</p>
-        <h1>A excelência não acontece por acaso. Ela é construída diariamente.</h1>
-        <p style={{ maxWidth: '40rem', fontSize: '1.15rem', color: 'var(--cinza)' }}>
-          Dia a dia na fronteira da perfeição.
-        </p>
+        <h1 className="destaque">Dia a dia na <span>fronteira da perfeição</span></h1>
         <div className="botoes">
           <Link className="botao" href="/login">Entrar</Link>
           <Link className="botao claro" href="/cadastro">Criar acesso</Link>
