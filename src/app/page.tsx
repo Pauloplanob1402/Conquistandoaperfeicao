@@ -67,7 +67,7 @@ export default async function Home() {
             </li>
           ))}
         </ol>
-        <p style={{ maxWidth: '40rem' }}>O que você faz vira conversa no encontro do mês e volta para o ser e o saber. O ciclo não termina.</p>
+        <p style={{ maxWidth: '40rem' }}>O que você faz vira apresentação no encontro do mês e volta para o ser e o saber. O ciclo não termina.</p>
         <div className="botoes">
           <Link className="botao" href="/login">Entrar</Link>
           <Link className="botao claro" href="/cadastro">Criar acesso</Link>
