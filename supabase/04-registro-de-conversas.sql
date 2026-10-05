@@ -1,8 +1,8 @@
 -- ============================================================
--- ORDEM 4 de 8 · registro-de-conversas
+-- ORDEM 4 de 10 · registro-de-conversas
 -- Quando: depois do 03
 -- O que faz: guarda as perguntas feitas em Conversa de liderança (alimenta Administração > Perguntas)
--- Pode rodar de novo sem problema: sim
+-- Pode rodar de novo sem problema: sim (se repetir depois do 08, rode o 08 de novo em seguida)
 -- ============================================================
 
 create table if not exists public.conversas (

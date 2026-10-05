@@ -60,3 +60,9 @@ progress{height:10px}
 .barras{display:grid;gap:.5rem;margin:1rem 0}
 .barra-linha{display:grid;grid-template-columns:2.2rem 1fr 5.5rem;gap:.6rem;align-items:center;font-size:.9rem}
 .barra-linha>div{display:grid;gap:3px}.barra-linha i{display:block;height:7px;border-radius:4px;min-width:2px}
+.check{display:flex;gap:.6rem;align-items:flex-start;margin:1rem 0}.check input{width:auto;min-height:0;margin-top:.3rem}.check label{margin:0;font-weight:400}
+.rodape{display:flex;gap:1.2rem;justify-content:center;padding:1.5rem 1rem 2.5rem;font-size:.9rem}
+.texto{max-width:44rem}.texto h2{margin-top:1.6em}
+.usuario{display:grid;grid-template-columns:2fr 1.3fr 1fr auto auto;gap:.6rem;align-items:center;margin:.5rem 0}
+.check2{display:flex;gap:.4rem;align-items:center;margin:0;font-weight:400;white-space:nowrap}.check2 input{width:auto;min-height:0}
+@media(max-width:800px){.usuario{grid-template-columns:1fr 1fr}.usuario>div:first-child{grid-column:1/-1}}

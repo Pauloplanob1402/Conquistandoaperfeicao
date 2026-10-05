@@ -1,8 +1,8 @@
 -- ============================================================
--- ORDEM 1 de 8 · base-banco
+-- ORDEM 1 de 10 · base-banco
 -- Quando: primeiro de todos
 -- O que faz: cria unidades, perfis, respostas, fontes internas, histórico e as regras de segurança
--- Pode rodar de novo sem problema: sim
+-- Pode rodar de novo sem problema: sim (se repetir depois do 08, rode o 08 de novo em seguida)
 -- ============================================================
 
 create table if not exists public.unidades (

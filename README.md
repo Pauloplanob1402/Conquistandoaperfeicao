@@ -16,7 +16,7 @@ Rode `supabase/migracao-03-conquistando.sql` (cria as tabelas e 5 práticas inic
 - `data/respostas-beira-rio.csv` as 200 respostas · `scripts/importar-respostas.mjs` importador
 
 ## Ordem dos SQLs (pasta `supabase/`)
-No Supabase, abra o **SQL Editor** e rode **um arquivo por vez, na ordem dos números**. Todos podem ser rodados de novo sem problema.
+No Supabase, abra o **SQL Editor** e rode **um arquivo por vez, na ordem dos números**.
 
 | Ordem | Arquivo | O que faz |
 |---|---|---|
@@ -27,14 +27,27 @@ No Supabase, abra o **SQL Editor** e rode **um arquivo por vez, na ordem dos nú
 | 5 | `05-conquistando-a-perfeicao.sql` | Práticas, tarefas e ações do mês |
 | 6 | `06-minha-jornada.sql` | Orientações acessadas por pessoa |
 | 7 | `07-newsletter.sql` | Edições, destaques e envios |
-| 8 | `08-promover-administrador.sql` | Só depois de criar seu acesso em `/cadastro` |
+| 8 | `08-usuarios-aprovacao-e-aceite.sql` | Aprovação de acessos, domínios, aceite dos termos |
+| 9 | `09-limite-de-perguntas.sql` | Proteção contra excesso de perguntas |
+| 10 | `10-promover-administrador.sql` | Só depois de criar seu acesso em `/cadastro` |
+
+Regras: rode o **08 antes** de publicar a versão nova do site. Todos podem ser repetidos, mas o 03 sobrescreve edições feitas no painel, e se você repetir um arquivo de 1 a 7 depois do 08, rode o 08 de novo em seguida.
 
 ## Passo a passo
-1. **Supabase:** crie o projeto e rode os SQLs 01 a 07. Copie a URL e a chave `anon` (Project Settings > API).
+1. **Supabase:** crie o projeto e rode os SQLs 01 a 09. Copie a URL e a chave `anon` (Project Settings > API).
 2. **Auth:** em Authentication > URL Configuration, ponha a URL do site em Site URL e `.../auth/callback` em Redirect URLs.
 3. **GitHub e Vercel:** suba a pasta (sem `node_modules`, `.next`, `.env.local`), importe na Vercel e cadastre as variáveis do `.env.example`. As três primeiras bastam para tudo, menos o e-mail da newsletter.
-4. Crie seu acesso em `/cadastro`, confirme o e-mail e rode o SQL 08.
-5. Em `/admin`, confira as unidades, as práticas do mês e crie a primeira edição da newsletter.
+4. Crie seu acesso em `/cadastro`, confirme o e-mail e rode o SQL 10.
+5. Em `/admin/usuarios`, cadastre os domínios de aprovação automática; em `/admin`, confira as práticas do mês e crie a primeira newsletter.
+
+## Login com Google (opcional)
+1. No Google Cloud Console: APIs e serviços > Credenciais > Criar credenciais > ID do cliente OAuth (aplicativo da Web).
+2. Em "URIs de redirecionamento autorizados", ponha `https://SEU-PROJETO.supabase.co/auth/v1/callback`.
+3. No Supabase: Authentication > Providers > Google. Ative e cole o Client ID e o Client Secret.
+Quem entra com Google escolhe a unidade e aceita os termos no primeiro acesso, e passa pela mesma aprovação.
+
+## Esqueci minha senha
+Funciona pelo e-mail do Supabase. Confira em Authentication > URL Configuration se a URL do site e `.../auth/callback` estão cadastradas.
 
 ## Newsletter por e-mail (opcional)
 Crie uma conta na Brevo, verifique o e-mail remetente e cadastre na Vercel `BREVO_API_KEY`, `NEWSLETTER_REMETENTE_EMAIL` e `NEWSLETTER_REMETENTE_NOME`. Use "Enviar teste para mim" antes do primeiro envio real. O **agendamento** usa o cron diário da Vercel e exige também `CRON_SECRET` e `SUPABASE_SERVICE_ROLE_KEY`, como variáveis de servidor (nunca com prefixo `NEXT_PUBLIC_`).

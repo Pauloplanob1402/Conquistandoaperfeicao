@@ -1,8 +1,8 @@
 -- ============================================================
--- ORDEM 3 de 8 · respostas-200
+-- ORDEM 3 de 10 · respostas-200
 -- Quando: depois do 01
 -- O que faz: carrega as 200 respostas do algoritmo, já aprovadas
--- Pode rodar de novo: sim, mas ele SOBRESCREVE edições feitas no painel e volta tudo para aprovada
+-- Pode rodar de novo: sim, mas ele SOBRESCREVE edições feitas no painel e volta tudo para aprovada (se repetir depois do 08, rode o 08 de novo em seguida)
 -- ============================================================
 
 insert into public.respostas (id, tema, camada, pergunta, palavras_chave, reflexao, orientacao, relacionados, status) values

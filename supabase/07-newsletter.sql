@@ -1,20 +1,12 @@
 -- ============================================================
--- ORDEM 7 de 8 · newsletter
+-- ORDEM 7 de 10 · newsletter
 -- Quando: depois do 06
 -- O que faz: cria as edições, os destaques das unidades e o registro de envios; guarda o e-mail de cada perfil para o envio
--- Pode rodar de novo sem problema: sim
+-- Pode rodar de novo sem problema: sim (se repetir depois do 08, rode o 08 de novo em seguida)
 -- ============================================================
 
 alter table public.perfis add column if not exists email text;
 update public.perfis p set email = u.email from auth.users u where u.id = p.id and p.email is null;
-
-create or replace function public.handle_new_user() returns trigger
-language plpgsql security definer set search_path = public as $$
-begin
-  insert into public.perfis (id, nome, email, unidade_id)
-  values (new.id, new.raw_user_meta_data->>'nome', new.email, nullif(new.raw_user_meta_data->>'unidade_id','')::uuid);
-  return new;
-end $$;
 
 create table if not exists public.newsletters (
   id uuid primary key default gen_random_uuid(),

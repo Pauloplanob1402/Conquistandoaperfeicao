@@ -1,8 +1,8 @@
 -- ============================================================
--- ORDEM 6 de 8 · minha-jornada
+-- ORDEM 6 de 10 · minha-jornada
 -- Quando: depois do 05
 -- O que faz: guarda quais orientações cada pessoa já abriu (aparece em Minha jornada)
--- Pode rodar de novo sem problema: sim
+-- Pode rodar de novo sem problema: sim (se repetir depois do 08, rode o 08 de novo em seguida)
 -- ============================================================
 
 create table if not exists public.acessos (

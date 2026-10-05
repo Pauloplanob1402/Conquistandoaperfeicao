@@ -1,8 +1,8 @@
 -- ============================================================
--- ORDEM 5 de 8 · conquistando-a-perfeicao
+-- ORDEM 5 de 10 · conquistando-a-perfeicao
 -- Quando: depois do 01
 -- O que faz: cria práticas, tarefas, conclusões e ações do mês, com 5 práticas iniciais de outubro/2026
--- Pode rodar de novo sem problema: sim
+-- Pode rodar de novo sem problema: sim (se repetir depois do 08, rode o 08 de novo em seguida)
 -- ============================================================
 
 create table if not exists public.praticas (

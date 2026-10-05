@@ -30,6 +30,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           </nav>
         </header>
         {children}
+        <footer className="rodape"><Link href="/privacidade">Privacidade</Link><Link href="/termos">Termos de uso</Link></footer>
       </body>
     </html>
   );

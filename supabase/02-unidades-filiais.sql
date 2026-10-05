@@ -1,8 +1,8 @@
 -- ============================================================
--- ORDEM 2 de 8 · unidades-filiais
+-- ORDEM 2 de 10 · unidades-filiais
 -- Quando: depois do 01
 -- O que faz: cadastra as 13 filiais que aparecem na lista do cadastro
--- Pode rodar de novo sem problema: sim
+-- Pode rodar de novo sem problema: sim (se repetir depois do 08, rode o 08 de novo em seguida)
 -- ============================================================
 
 insert into public.unidades (nome, cidade) values
