@@ -10,7 +10,7 @@ export default async function Newsletter() {
   return (
     <main className="pagina">
       <h1>Newsletter</h1>
-      <p style={{ color: 'var(--cinza)', maxWidth: '42rem' }}>Boas práticas, reflexões e destaques das unidades. A cultura circulando entre todos.</p>
+      <p style={{ color: 'var(--cinza)', maxWidth: '42rem' }}>Boas práticas, reflexões e destaques das unidades.</p>
       {lista.length === 0 ? <p className="aviso">Ainda não há edições publicadas.</p> : (
         <ul className="lista">
           {lista.map(e => (

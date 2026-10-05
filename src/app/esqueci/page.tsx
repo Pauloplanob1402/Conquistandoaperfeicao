@@ -14,9 +14,9 @@ export default async function Esqueci({ searchParams }: { searchParams: Promise<
   return (
     <main className="pagina estreito">
       <h1>Esqueci minha senha</h1>
-      {sp.enviado ? <p className="aviso ok">Se o e-mail estiver cadastrado, enviamos um link para criar uma nova senha. Confira também a caixa de spam.</p> : (
+      {sp.enviado ? <p className="aviso ok">Se o e-mail estiver cadastrado, enviamos um link para criar nova senha. Confira o spam.</p> : (
         <form action={enviar}>
-          <label htmlFor="email">E-mail do seu acesso</label><input id="email" name="email" type="email" autoComplete="email" required />
+          <label htmlFor="email">E-mail</label><input id="email" name="email" type="email" autoComplete="email" required />
           <p><button type="submit">Enviar link</button></p>
         </form>
       )}

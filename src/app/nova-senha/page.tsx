@@ -16,8 +16,8 @@ export default async function NovaSenha({ searchParams }: { searchParams: Promis
   return (
     <main className="pagina estreito">
       <h1>Criar nova senha</h1>
-      {sp.erro === '1' && <p className="aviso">As senhas precisam ser iguais e ter 6 ou mais caracteres.</p>}
-      {sp.erro === '2' && <p className="aviso">O link expirou. Peça um novo em &quot;Esqueci minha senha&quot;.</p>}
+      {sp.erro === '1' && <p className="aviso">As senhas devem ser iguais e ter 6 ou mais caracteres.</p>}
+      {sp.erro === '2' && <p className="aviso">O link expirou. Peça outro em &quot;Esqueci minha senha&quot;.</p>}
       <form action={salvar}>
         <label htmlFor="senha">Nova senha</label><input id="senha" name="senha" type="password" minLength={6} autoComplete="new-password" required />
         <label htmlFor="confirma">Repita a nova senha</label><input id="confirma" name="confirma" type="password" minLength={6} autoComplete="new-password" required />

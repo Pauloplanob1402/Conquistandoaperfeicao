@@ -43,7 +43,7 @@ export default async function Conquistando() {
   return (
     <main className="pagina">
       <h1>Conquistando a Perfeição</h1>
-      <p style={{ color: 'var(--cinza)', maxWidth: '42rem' }}>Práticas de {nomePeriodo(periodo)}. Pratique, registre o que deu certo e leve para o encontro mensal.</p>
+      <p style={{ color: 'var(--cinza)', maxWidth: '42rem' }}>Práticas de {nomePeriodo(periodo)}. Pratique, registre o que deu certo e leve ao encontro mensal.</p>
       {total > 0 && (
         <p><strong>{concluidas} de {total} tarefas concluídas</strong><br /><progress value={concluidas} max={total} style={{ width: '100%', maxWidth: '42rem', accentColor: 'var(--vermelho)' }} /></p>
       )}
@@ -71,13 +71,13 @@ export default async function Conquistando() {
       </div>
 
       <section style={{ maxWidth: '42rem', marginTop: '2.5rem' }}>
-        <h2>Minha ação para o encontro mensal</h2>
-        <p style={{ color: 'var(--cinza)' }}>Registre uma ação bem-sucedida, o que aprendeu e uma melhoria para o próximo período.</p>
+        <h2>Minha ação do mês</h2>
+        <p style={{ color: 'var(--cinza)' }}>Registre o que deu certo, o que aprendeu e o que melhorar.</p>
         <form action={registrar}>
-          <label htmlFor="o_que_fiz">O que eu fiz</label><textarea id="o_que_fiz" name="o_que_fiz" maxLength={1000} required />
-          <label htmlFor="resultado">Qual foi o resultado</label><textarea id="resultado" name="resultado" maxLength={1000} />
-          <label htmlFor="aprendizado">O que aprendi</label><textarea id="aprendizado" name="aprendizado" maxLength={1000} />
-          <label htmlFor="melhoria">Melhoria para o próximo período</label><textarea id="melhoria" name="melhoria" maxLength={1000} />
+          <label htmlFor="o_que_fiz">O que fiz</label><textarea id="o_que_fiz" name="o_que_fiz" maxLength={1000} required />
+          <label htmlFor="resultado">Resultado</label><textarea id="resultado" name="resultado" maxLength={1000} />
+          <label htmlFor="aprendizado">Aprendizado</label><textarea id="aprendizado" name="aprendizado" maxLength={1000} />
+          <label htmlFor="melhoria">Melhoria para o próximo mês</label><textarea id="melhoria" name="melhoria" maxLength={1000} />
           <p><button type="submit">Registrar ação</button></p>
         </form>
         {acoes.length > 0 && (

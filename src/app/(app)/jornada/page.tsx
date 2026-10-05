@@ -40,7 +40,7 @@ export default async function Jornada() {
   return (
     <main className="pagina">
       <h1>{perfil?.nome ? `A jornada de ${perfil.nome.split(' ')[0]}` : 'Minha jornada'}</h1>
-      <p style={{ color: 'var(--cinza)', maxWidth: '42rem' }}>Seu progresso, o que você praticou e como evoluiu ao longo do tempo.</p>
+      <p style={{ color: 'var(--cinza)', maxWidth: '42rem' }}>Seu progresso e sua evolução.</p>
 
       <section style={{ maxWidth: '42rem' }}>
         <h2>Progresso de {nomePeriodo(periodo)}</h2>

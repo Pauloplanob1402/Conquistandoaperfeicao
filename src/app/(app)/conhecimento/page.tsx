@@ -9,7 +9,7 @@ export default async function Conhecimento() {
   return (
     <main className="pagina">
       <h1>Conhecimento</h1>
-      <p style={{ color: 'var(--cinza)', maxWidth: '42rem' }}>Escolha um tema e explore situações reais com reflexão e orientação prática.</p>
+      <p style={{ color: 'var(--cinza)', maxWidth: '42rem' }}>Escolha um tema e explore situações reais.</p>
       <div className="grade">
         {TEMAS.map(t => (
           <Link className="area" key={t.slug} href={`/conhecimento/${t.slug}`} style={{ ['--cor' as string]: t.cor }}>

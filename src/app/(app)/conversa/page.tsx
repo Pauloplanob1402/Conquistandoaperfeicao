@@ -35,19 +35,19 @@ export default async function Conversa({ searchParams }: { searchParams: Promise
   return (
     <main className="pagina">
       <h1>Conversa de liderança</h1>
-      <p style={{ color: 'var(--cinza)', maxWidth: '42rem' }}>Descreva uma situação real do seu dia a dia. Você recebe uma reflexão e uma orientação prática.</p>
+      <p style={{ color: 'var(--cinza)', maxWidth: '42rem' }}>Conte uma situação do seu dia a dia. Você recebe uma reflexão e uma orientação prática.</p>
       <form action={perguntar} style={{ maxWidth: '42rem' }}>
         <label htmlFor="pergunta">Qual é a situação?</label>
-        <textarea id="pergunta" name="pergunta" maxLength={500} defaultValue={sp.q ?? ''} placeholder="Ex.: Minha equipe resiste às mudanças. Como posso conduzir isso?" required />
-        {sp.curta && <p className="aviso">Conte um pouco mais sobre a situação, com pelo menos uma frase.</p>}
+        <textarea id="pergunta" name="pergunta" maxLength={500} defaultValue={sp.q ?? ''} placeholder="Ex.: Minha equipe resiste à mudança." required />
+        {sp.curta && <p className="aviso">Conte um pouco mais, em pelo menos uma frase.</p>}
         <p><button type="submit">Receber orientação</button></p>
       </form>
-      {sp.limite && <p className="aviso" style={{ maxWidth: '42rem' }}>Muitas perguntas em pouco tempo. Aguarde um minuto e tente de novo.</p>}
+      {sp.limite && <p className="aviso" style={{ maxWidth: '42rem' }}>Muitas perguntas em pouco tempo. Aguarde um minuto.</p>}
       {sp.vazio && (
-        <p className="aviso" style={{ maxWidth: '42rem' }}>Ainda não há orientações liberadas. Quem administra a plataforma precisa aprovar as respostas em Administração &gt; Respostas.</p>
+        <p className="aviso" style={{ maxWidth: '42rem' }}>Ainda não há orientações liberadas. Peça ao administrador para aprovar as respostas.</p>
       )}
       {sp.sem && (
-        <p className="aviso" style={{ maxWidth: '42rem' }}>Ainda não temos uma orientação para essa situação. Tente descrevê-la com outras palavras. Sua pergunta foi registrada para ampliarmos o conteúdo.</p>
+        <p className="aviso" style={{ maxWidth: '42rem' }}>Ainda não temos orientação para essa situação. Tente com outras palavras. Sua pergunta foi registrada para ampliarmos o conteúdo.</p>
       )}
       {atual && (
         <section style={{ maxWidth: '42rem', marginTop: '2rem' }}>

@@ -22,10 +22,10 @@ export default async function Home() {
         <p className="kicker">Calçados Beira Rio · Conquistando a Perfeição</p>
         <h1>A excelência não acontece por acaso. Ela é construída diariamente.</h1>
         <p style={{ maxWidth: '40rem', fontSize: '1.15rem', color: 'var(--cinza)' }}>
-          Uma ferramenta para transformar liderança, responsabilidade e excelência em prática, em todo o ecossistema Beira Rio.
+          Dia a dia na fronteira da perfeição.
         </p>
         <div className="botoes">
-          <Link className="botao" href="/login">Entrar na plataforma</Link>
+          <Link className="botao" href="/login">Entrar</Link>
           <Link className="botao claro" href="/cadastro">Criar acesso</Link>
         </div>
       </section>
@@ -33,21 +33,21 @@ export default async function Home() {
       <Frase />
 
       <section className="historia">
-        <h2>Como nasceu o Conquistando a Perfeição</h2>
-        <p>Em 23 de maio de 2009, o fundador e presidente da Calçados Beira Rio, Roberto Argenta, lançou o primeiro Conquistando a Perfeição, na filial 12, em Roca Sales (RS). Um jardim e uma placa, com uma sibipiruna, lembram aquele dia.</p>
-        <p>Desde então, o programa virou rotina nas unidades e setores. Todos os meses, colaboradores apresentam ações bem-sucedidas, analisam as experiências com os colegas e apontam melhorias para o futuro. Todos são alunos e professores.</p>
+        <h2>Como nasceu</h2>
+        <p>Em 23 de maio de 2009, o fundador e presidente da Calçados Beira Rio, Sr. Roberto Argenta, lançou o primeiro Conquistando a Perfeição, na filial 12, em Roca Sales (RS).</p>
+        <p>Hoje é rotina em todas as unidades e setores. Todo mês, as pessoas apresentam o que deu certo, analisam com os colegas e apontam melhorias. Todos são alunos e professores.</p>
       </section>
 
       <Frase texto="“A fé sem obras é morta. Achei que deveria me empenhar em fazer coisas, gerar emprego e bem-estar.”" />
 
       <section>
         <h2>Um ciclo, não um site</h2>
-        <p style={{ color: 'var(--cinza)', maxWidth: '40rem' }}>Esta plataforma leva essa rotina para o dia a dia da liderança. O ciclo nunca termina: depois de desenvolver, volta-se a conhecer.</p>
+        <p style={{ color: 'var(--cinza)', maxWidth: '40rem' }}>Esta plataforma leva essa rotina ao dia a dia da liderança. O ciclo não termina: depois de desenvolver, volta a conhecer.</p>
         <ol className="ciclo">
           {CICLO.map(c => <li key={c.nome} style={{ ['--cor' as string]: c.cor }}><strong>{c.nome}</strong><small>{c.texto}</small></li>)}
         </ol>
         <div className="botoes">
-          <Link className="botao" href="/login">Entrar na plataforma</Link>
+          <Link className="botao" href="/login">Entrar</Link>
         </div>
       </section>
     </main>

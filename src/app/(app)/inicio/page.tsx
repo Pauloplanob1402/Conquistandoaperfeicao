@@ -2,10 +2,10 @@ import Link from 'next/link';
 import { getPerfil } from '@/lib/supabase/server';
 
 const AREAS = [
-  { nome: 'Conhecimento', texto: 'Cultura, ética, liderança, excelência e mais, por tema.', cor: '#c9962b', href: '/conhecimento' },
-  { nome: 'Conversa de liderança', texto: 'Descreva uma situação real e receba orientação prática.', cor: '#6b3fa0', href: '/conversa' },
-  { nome: 'Conquistando a Perfeição', texto: 'Práticas do mês, tarefas e a ação para o encontro mensal.', cor: '#1e8e5a', href: '/conquistando' },
-  { nome: 'Minha jornada', texto: 'Seu progresso, histórico e evolução.', cor: '#2a9bd6', href: '/jornada' },
+  { nome: 'Conhecimento', texto: 'Situações por tema: cultura, ética, liderança e mais.', cor: '#c9962b', href: '/conhecimento' },
+  { nome: 'Conversa de liderança', texto: 'Conte uma situação. Receba orientação prática.', cor: '#6b3fa0', href: '/conversa' },
+  { nome: 'Conquistando a Perfeição', texto: 'Práticas do mês e sua ação para o encontro.', cor: '#1e8e5a', href: '/conquistando' },
+  { nome: 'Minha jornada', texto: 'Seu progresso e sua evolução.', cor: '#2a9bd6', href: '/jornada' },
   { nome: 'Newsletter', texto: 'Boas práticas e destaques das unidades.', cor: '#e8730c', href: '/newsletter' },
 ];
 

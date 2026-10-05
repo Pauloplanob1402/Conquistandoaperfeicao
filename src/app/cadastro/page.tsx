@@ -25,9 +25,9 @@ export default async function Cadastro({ searchParams }: { searchParams: Promise
   return (
     <main className="pagina estreito">
       <h1>Criar acesso</h1>
-      {sp.erro === 'aceite' && <p className="aviso">Para criar o acesso, aceite os termos de uso e o aviso de privacidade.</p>}
-      {sp.erro === '1' && <p className="aviso">Não foi possível criar o acesso. Use uma senha com 6 ou mais caracteres e confira o e-mail.</p>}
-      <p style={{ color: 'var(--cinza)' }}>Depois de criar o acesso, ele passa por aprovação antes de liberar o conteúdo.</p>
+      {sp.erro === 'aceite' && <p className="aviso">Aceite os termos e o aviso de privacidade para continuar.</p>}
+      {sp.erro === '1' && <p className="aviso">Não foi possível criar o acesso. Confira o e-mail e use uma senha de 6 ou mais caracteres.</p>}
+      <p style={{ color: 'var(--cinza)' }}>Seu acesso será aprovado antes de liberar o conteúdo.</p>
       <form action={cadastrar}>
         <label htmlFor="nome">Nome</label><input id="nome" name="nome" autoComplete="name" required />
         <label htmlFor="email">E-mail</label><input id="email" name="email" type="email" autoComplete="email" required />
