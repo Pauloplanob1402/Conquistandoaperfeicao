@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
-import { entrarComGoogle } from '../acoes-auth';
 
 async function cadastrar(fd: FormData) {
   'use server';
@@ -41,7 +40,6 @@ export default async function Cadastro({ searchParams }: { searchParams: Promise
         <p className="check"><input id="aceite" name="aceite" type="checkbox" required /><label htmlFor="aceite">Li e aceito os <Link href="/termos" target="_blank">termos de uso</Link> e o <Link href="/privacidade" target="_blank">aviso de privacidade</Link>.</label></p>
         <p><button type="submit">Criar acesso</button></p>
       </form>
-      <form action={entrarComGoogle}><p><button className="claro" type="submit">Continuar com Google</button></p></form>
       <p>Já tem acesso? <Link href="/login">Entrar</Link></p>
     </main>
   );

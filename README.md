@@ -40,12 +40,6 @@ Regras: rode o **08 antes** de publicar a versão nova do site. Todos podem ser 
 4. Crie seu acesso em `/cadastro`, confirme o e-mail e rode o SQL 10.
 5. Em `/admin/usuarios`, cadastre os domínios de aprovação automática; em `/admin`, confira as práticas do mês e crie a primeira newsletter.
 
-## Login com Google (opcional)
-1. No Google Cloud Console: APIs e serviços > Credenciais > Criar credenciais > ID do cliente OAuth (aplicativo da Web).
-2. Em "URIs de redirecionamento autorizados", ponha `https://SEU-PROJETO.supabase.co/auth/v1/callback`.
-3. No Supabase: Authentication > Providers > Google. Ative e cole o Client ID e o Client Secret.
-Quem entra com Google escolhe a unidade e aceita os termos no primeiro acesso, e passa pela mesma aprovação.
-
 ## Esqueci minha senha
 Funciona pelo e-mail do Supabase. Confira em Authentication > URL Configuration se a URL do site e `.../auth/callback` estão cadastradas.
 
@@ -58,4 +52,4 @@ Crie uma conta na Brevo, verifique o e-mail remetente e cadastre na Vercel `BREV
 - A chave `service_role` só é usada no envio agendado da newsletter, como variável de servidor da Vercel. Nunca use prefixo `NEXT_PUBLIC_` e nunca suba ao GitHub.
 
 ## Próximas etapas
-Reconhecimento entre unidades, relatórios para a diretoria e login com Google.
+Reconhecimento entre unidades, relatórios para a diretoria e acompanhamento pela liderança.

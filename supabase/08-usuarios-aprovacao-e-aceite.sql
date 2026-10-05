@@ -1,7 +1,7 @@
 -- ============================================================
 -- ORDEM 8 de 10 · usuarios-aprovacao-e-aceite
 -- Quando: depois do 07 e ANTES de publicar a versão nova do site
--- O que faz: aprovação de acessos, domínios com aprovação automática, aceite dos termos, perfil com nome do Google e segurança extra nas regras
+-- O que faz: aprovação de acessos, domínios com aprovação automática, aceite dos termos e segurança extra nas regras de perfil
 -- Pode rodar de novo sem problema: sim
 -- ============================================================
 

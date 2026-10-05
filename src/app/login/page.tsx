@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
-import { entrarComGoogle } from '../acoes-auth';
 
 async function entrar(fd: FormData) {
   'use server';
@@ -23,7 +22,6 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
         <label htmlFor="senha">Senha</label><input id="senha" name="senha" type="password" autoComplete="current-password" required />
         <p><button type="submit">Entrar</button></p>
       </form>
-      <form action={entrarComGoogle}><p><button className="claro" type="submit">Entrar com Google</button></p></form>
       <p><Link href="/esqueci">Esqueci minha senha</Link></p>
       <p>Ainda não tem acesso? <Link href="/cadastro">Criar acesso</Link></p>
     </main>
