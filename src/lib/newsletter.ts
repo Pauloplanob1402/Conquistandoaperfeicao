@@ -14,22 +14,25 @@ export function montarHtml(e: Edicao, destaques: Destaque[], url: string): strin
     : '';
   return `<!doctype html><html lang="pt-BR"><body style="margin:0;background:#fbfaf8;font:16px system-ui,Segoe UI,Arial,sans-serif;color:#1b2430">
 <div style="max-width:600px;margin:0 auto;padding:24px"><div style="font:700 14px Georgia,serif;color:#a3162b;letter-spacing:.5px">CONQUISTANDO A PERFEIÇÃO</div>
-<h1 style="font:700 26px Georgia,serif;margin:8px 0 18px">${esc(e.titulo)}</h1>${corpo}${dest}
+<h1 style="font:700 26px Georgia,serif;margin:8px 0 18px">${esc(e.titulo)}</h1><p style="margin:0 0 14px;line-height:1.6">Olá, {{params.NOME}}!</p>${corpo}${dest}
 <p style="margin:28px 0 0"><a href="${url}" style="background:#a3162b;color:#fff;padding:12px 18px;border-radius:6px;text-decoration:none;font-weight:600">Ler na plataforma</a></p>
 <p style="color:#5a6472;font-size:12px;margin-top:24px">Cultura que entra na rotina da liderança.</p></div></body></html>`;
 }
 
-export async function enviarEmails(assunto: string, html: string, emails: string[]) {
+export type Destinatario = { email: string; nome?: string | null };
+const primeiroNome = (n?: string | null) => (n ?? '').trim().split(/\s+/)[0] || 'leitor(a)';
+
+export async function enviarEmails(assunto: string, html: string, destinatarios: Destinatario[]) {
   const key = process.env.BREVO_API_KEY, from = process.env.NEWSLETTER_REMETENTE_EMAIL;
   if (!key || !from) return { ok: false as const, enviados: 0, erro: 'Configure BREVO_API_KEY e NEWSLETTER_REMETENTE_EMAIL na Vercel.' };
-  if (emails.length === 0) return { ok: false as const, enviados: 0, erro: 'Nenhum destinatário com e-mail cadastrado.' };
+  if (destinatarios.length === 0) return { ok: false as const, enviados: 0, erro: 'Nenhum destinatário com e-mail cadastrado.' };
   let enviados = 0;
-  for (let i = 0; i < emails.length; i += 200) {
-    const lote = emails.slice(i, i + 200);
+  for (let i = 0; i < destinatarios.length; i += 200) {
+    const lote = destinatarios.slice(i, i + 200);
     const r = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: { 'api-key': key, 'content-type': 'application/json', accept: 'application/json' },
-      body: JSON.stringify({ sender: { name: process.env.NEWSLETTER_REMETENTE_NOME || 'Conquistando a Perfeição', email: from }, subject: assunto, htmlContent: html, messageVersions: lote.map(email => ({ to: [{ email }] })) }),
+      body: JSON.stringify({ sender: { name: process.env.NEWSLETTER_REMETENTE_NOME || 'Conquistando a Perfeição', email: from }, subject: assunto, htmlContent: html, messageVersions: lote.map(d => ({ to: [{ email: d.email, name: d.nome?.trim() || undefined }], params: { NOME: primeiroNome(d.nome) } })) }),
     });
     if (!r.ok) return { ok: false as const, enviados, erro: `O serviço de e-mail respondeu ${r.status}.` };
     enviados += lote.length;
@@ -48,9 +51,10 @@ export async function publicarEdicao(supabase: SupabaseClient, id: string, porEm
   let enviados = 0;
   if (porEmail) {
     const url = `${process.env.NEXT_PUBLIC_SITE_URL}/newsletter/${id}`;
-    const { data: ps } = await supabase.from('perfis').select('email').not('email', 'is', null);
-    const emails = [...new Set(((ps ?? []) as { email: string }[]).map(p => p.email))];
-    const r = await enviarEmails(n.titulo, montarHtml(n, await carregarDestaques(supabase, id), url), emails);
+    const { data: ps } = await supabase.from('perfis').select('nome,email').not('email', 'is', null);
+    const unicos = new Map<string, Destinatario>();
+    for (const p of (ps ?? []) as { nome: string | null; email: string }[]) if (!unicos.has(p.email)) unicos.set(p.email, { email: p.email, nome: p.nome });
+    const r = await enviarEmails(n.titulo, montarHtml(n, await carregarDestaques(supabase, id), url), [...unicos.values()]);
     if (!r.ok) return r;
     enviados = r.enviados;
   }

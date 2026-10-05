@@ -74,10 +74,14 @@ progress{height:10px}
 .citacao figcaption{font-size:.95rem;font-weight:600;color:var(--cinza);margin-top:.8rem}
 .citacao.pequena{margin:1rem 0 1.5rem;padding-left:1rem;border-left-width:4px}.citacao.pequena blockquote{font-size:1.05rem;line-height:1.45}.citacao.pequena figcaption{font-size:.85rem;margin-top:.5rem}
 .historia{max-width:44rem;margin:2rem 0}
-.ciclo{list-style:none;padding:0;margin:1.2rem 0;display:grid;gap:.6rem;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
-.ciclo li{background:#fff;border:1px solid var(--linha);border-top:4px solid var(--cor);border-radius:8px;padding:.7rem .8rem}
-.ciclo li strong{display:block;font-family:Georgia,serif}.ciclo li small{color:var(--cinza)}
 
 .hero.grande{min-height:min(72vh,680px);min-height:min(72dvh,680px);display:flex;flex-direction:column;justify-content:center}
 .destaque{font-size:clamp(2.75rem,10.5vw,6rem);line-height:1.04;letter-spacing:-.02em;margin:.25em 0 .5em;max-width:13ch;text-wrap:balance}
 .destaque span{color:var(--vermelho)}
+.pilares{list-style:none;padding:0;margin:1.4rem 0;display:grid;gap:1rem;grid-template-columns:1fr}
+.pilares li{position:relative;background:#fff;border:1px solid var(--linha);border-radius:8px;padding:1.1rem 1.2rem}
+.pilares h3{font-size:1.7rem;margin:0 0 .2rem;color:var(--vermelho)}
+.pilares p{margin:.3rem 0;color:var(--cinza);font-size:.95rem}
+.pilares .lema{color:var(--tinta);font-weight:600}
+.pilares .onde{margin-top:.8rem;padding-top:.6rem;border-top:1px solid var(--linha);color:var(--tinta);font-size:.88rem;font-weight:600}
+@media(min-width:900px){.pilares{grid-template-columns:repeat(3,1fr)}.pilares li:not(:last-child)::after{content:"→";position:absolute;right:-1.1rem;top:50%;transform:translateY(-50%);z-index:1;width:1.2rem;text-align:center;line-height:1;font-size:1.4rem;color:var(--vermelho);background:var(--papel)}}

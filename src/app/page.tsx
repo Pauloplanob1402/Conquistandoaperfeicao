@@ -3,14 +3,17 @@ import { redirect } from 'next/navigation';
 import { getPerfil } from '@/lib/supabase/server';
 import { Frase } from '@/components/Frase';
 
-const CICLO = [
-  { nome: 'Conhecer', texto: 'Conhecimento e conversa', cor: '#c9962b' },
-  { nome: 'Refletir', texto: 'Situações reais', cor: '#6b3fa0' },
-  { nome: 'Praticar', texto: 'Práticas do mês', cor: '#1e8e5a' },
-  { nome: 'Acompanhar', texto: 'Minha jornada', cor: '#2a9bd6' },
-  { nome: 'Reconhecer', texto: 'Destaques das unidades', cor: '#e8730c' },
-  { nome: 'Compartilhar', texto: 'Newsletter', cor: '#a3162b' },
-  { nome: 'Desenvolver', texto: 'Evolução contínua', cor: '#3c5a6e' },
+const BENEFICIOS = [
+  { titulo: 'Para as pessoas', texto: 'Quem aprende mais cresce por inteiro: ganha voz, responsabilidade e novas portas. Há quem tenha entrado como auxiliar de escritório e hoje seja gerente regional de vendas.' },
+  { titulo: 'Para a empresa', texto: 'Gente bem formada erra menos e entrega mais. Cada setor com o seu objetivo, todos na mesma direção, com unidade de ação.' },
+  { titulo: 'Para a continuidade do negócio', texto: 'Quanto mais gente se forma, mais gente aprende a fazer. O saber não fica com um só: hoje você é aluno, amanhã é professor.' },
+  { titulo: 'Para a arte de servir o cliente', texto: 'Uma equipe alinhada, que busca superar suas metas e cuidar da qualidade, leva ao cliente um atendimento excepcional.' },
+];
+
+const PILARES = [
+  { nome: 'Ser', lema: 'Fidelidade ao projeto da empresa', dia: 'Conheça a cultura e os valores que orientam a liderança.', onde: 'Conhecimento' },
+  { nome: 'Saber', lema: 'Inteligência, estratégia e estudo', dia: 'Leve uma situação real do seu dia e receba uma orientação prática.', onde: 'Conversa de liderança' },
+  { nome: 'Fazer', lema: 'Ação e trabalho de verdade', dia: 'Pratique as ações do mês, registre o que deu certo e leve ao encontro do Conquistando a Perfeição.', onde: 'Conquistando a Perfeição · Minha jornada' },
 ];
 
 export default async function Home() {
@@ -38,13 +41,36 @@ export default async function Home() {
       <Frase texto="“A fé sem obras é morta. Achei que deveria me empenhar em fazer coisas, gerar emprego e bem-estar.”" />
 
       <section>
-        <h2>Um ciclo, não um site</h2>
-        <p style={{ color: 'var(--cinza)', maxWidth: '40rem' }}>Esta plataforma leva essa rotina ao dia a dia da liderança. O ciclo não termina: depois de desenvolver, volta a conhecer.</p>
-        <ol className="ciclo">
-          {CICLO.map(c => <li key={c.nome} style={{ ['--cor' as string]: c.cor }}><strong>{c.nome}</strong><small>{c.texto}</small></li>)}
+        <h2>O que o Conquistando constrói</h2>
+        <p style={{ color: 'var(--cinza)', maxWidth: '40rem' }}>Desde 2009, formar pessoas dentro da própria empresa dá frutos em quatro lugares.</p>
+        <div className="grade">
+          {BENEFICIOS.map(b => (
+            <section className="area" key={b.titulo}>
+              <h3>{b.titulo}</h3>
+              <p>{b.texto}</p>
+            </section>
+          ))}
+        </div>
+        <Frase compacta texto="“[…] buscar a perfeição continuamente, em cada ação […]”" />
+      </section>
+
+      <section>
+        <h2>Ser, saber e fazer: o ciclo do dia a dia</h2>
+        <p style={{ color: 'var(--cinza)', maxWidth: '40rem' }}>Três pilares sustentam o crescimento de todos. É isso que a plataforma coloca na sua rotina.</p>
+        <ol className="pilares">
+          {PILARES.map(p => (
+            <li key={p.nome}>
+              <h3>{p.nome}</h3>
+              <p className="lema">{p.lema}</p>
+              <p>{p.dia}</p>
+              <p className="onde">Na plataforma: {p.onde}</p>
+            </li>
+          ))}
         </ol>
+        <p style={{ maxWidth: '40rem' }}>O que você faz vira conversa no encontro do mês e volta para o ser e o saber. O ciclo não termina.</p>
         <div className="botoes">
           <Link className="botao" href="/login">Entrar</Link>
+          <Link className="botao claro" href="/cadastro">Criar acesso</Link>
         </div>
       </section>
     </main>

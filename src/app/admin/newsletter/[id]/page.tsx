@@ -37,7 +37,7 @@ export default async function Editor({ params, searchParams }: { params: Promise
     const { supabase, perfil } = await getPerfil();
     const { data: e } = await supabase.from('newsletters').select('id,titulo,resumo,corpo').eq('id', id).single();
     if (!e || !perfil?.email) return redirect(`/admin/newsletter/${id}?m=${encodeURIComponent('Seu perfil não tem e-mail cadastrado (rode o SQL 07).')}`);
-    const r = await enviarEmails(`[TESTE] ${e.titulo}`, montarHtml(e, await carregarDestaques(supabase, id), `${process.env.NEXT_PUBLIC_SITE_URL}/newsletter/${id}`), [perfil.email]);
+    const r = await enviarEmails(`[TESTE] ${e.titulo}`, montarHtml(e, await carregarDestaques(supabase, id), `${process.env.NEXT_PUBLIC_SITE_URL}/newsletter/${id}`), [{ email: perfil.email, nome: perfil.nome }]);
     redirect(`/admin/newsletter/${id}?m=${encodeURIComponent(r.ok ? `Teste enviado para ${perfil.email}.` : r.erro)}`);
   }
   async function publicar(fd: FormData) {
