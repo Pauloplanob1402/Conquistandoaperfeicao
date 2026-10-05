@@ -24,7 +24,7 @@ export default async function Cadastro({ searchParams }: { searchParams: Promise
   const { data: unidades } = await supabase.from('unidades').select('id,nome').order('nome');
   return (
     <main className="pagina estreito">
-      <h1>Criar acesso</h1>
+      <h1 className="titulo-centro">Criar acesso</h1>
       {sp.erro === 'aceite' && <p className="aviso">Aceite os termos e o aviso de privacidade para continuar.</p>}
       {sp.erro === '1' && <p className="aviso">Não foi possível criar o acesso. Confira o e-mail e use uma senha de 6 ou mais caracteres.</p>}
       <p style={{ color: 'var(--cinza)' }}>Seu acesso será aprovado antes de liberar o conteúdo.</p>

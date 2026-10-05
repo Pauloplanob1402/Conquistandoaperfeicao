@@ -86,10 +86,11 @@ progress{height:10px}
 .pilares .onde{margin-top:.8rem;padding-top:.6rem;border-top:1px solid var(--linha);color:var(--tinta);font-size:.88rem;font-weight:600}
 @media(min-width:900px){.pilares{grid-template-columns:repeat(3,1fr)}.pilares li:not(:last-child)::after{content:"→";position:absolute;right:-1.1rem;top:50%;transform:translateY(-50%);z-index:1;width:1.2rem;text-align:center;line-height:1;font-size:1.4rem;color:var(--vermelho);background:var(--papel)}}
 
-/* Página inicial no celular: tudo centralizado (só afeta telas até 640px e só a landing; o PC não muda) */
+/* Página inicial no celular: tudo centralizado (só telas até 640px; topo centralizado para quem ainda não entrou; o PC não muda) */
 @media(max-width:640px){
-  body:has(.hero.grande) .topo{flex-direction:column;justify-content:center;text-align:center;gap:.7rem;padding:1rem 1rem .9rem}
-  body:has(.hero.grande) .topo nav{justify-content:center;gap:1.1rem}
+  .topo:has(a[href="/login"]){flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.7rem;padding:1rem 1rem .9rem}
+  .topo:has(a[href="/login"]) nav{justify-content:center;gap:1.1rem}
+  .titulo-centro{text-align:center}
   .hero.grande{align-items:center;text-align:center;min-height:min(78dvh,640px);padding-top:.5rem}
   .hero.grande .kicker{max-width:19rem;text-wrap:balance;line-height:1.45;text-transform:uppercase;letter-spacing:.09em;font-size:.78rem}
   .hero.grande .kicker::before{content:"";display:block;width:3rem;height:3px;background:var(--vermelho-vivo);border-radius:2px;margin:0 auto 1rem}

@@ -15,7 +15,7 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
   const sp = await searchParams;
   return (
     <main className="pagina estreito">
-      <h1>Entrar</h1>
+      <h1 className="titulo-centro">Entrar</h1>
       <Frase compacta />
       {sp.ok && <p className="aviso ok">Acesso criado. Confirme seu e-mail e depois entre.</p>}
       {sp.erro && <p className="aviso">E-mail ou senha incorretos.</p>}
