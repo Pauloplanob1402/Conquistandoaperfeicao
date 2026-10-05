@@ -17,7 +17,7 @@ export async function middleware(req: NextRequest) {
   });
   const { data: { user } } = await supabase.auth.getUser();
   const p = req.nextUrl.pathname;
-  if (!user && (p.startsWith('/inicio') || p.startsWith('/admin') || p.startsWith('/conversa') || p.startsWith('/conhecimento'))) {
+  if (!user && (p.startsWith('/inicio') || p.startsWith('/admin') || p.startsWith('/conversa') || p.startsWith('/conhecimento') || p.startsWith('/conquistando') || p.startsWith('/jornada') || p.startsWith('/newsletter'))) {
     const url = req.nextUrl.clone();
     url.pathname = '/login';
     return NextResponse.redirect(url);
@@ -32,4 +32,4 @@ export async function middleware(req: NextRequest) {
   return res;
 }
 
-export const config = { matcher: ['/((?!_next/static|_next/image|favicon.ico|icon-.*\\.png|manifest.webmanifest).*)'] };
+export const config = { matcher: ['/((?!_next/static|_next/image|favicon.ico|icon-.*\\.png|manifest.webmanifest|api/cron).*)'] };

@@ -18,13 +18,14 @@ async function perguntar(fd: FormData) {
 
 export default async function Conversa({ searchParams }: { searchParams: Promise<{ q?: string; r?: string; sem?: string; curta?: string; vazio?: string }> }) {
   const sp = await searchParams;
-  const { supabase } = await getPerfil();
+  const { supabase, user } = await getPerfil();
   let atual: Resposta | null = null;
   let parecidas: Resposta[] = [];
   if (sp.r) {
     const { data } = await supabase.from('respostas').select('*');
     const base = (data ?? []) as Resposta[];
     atual = base.find(b => b.id === sp.r) ?? null;
+    if (atual && user) await supabase.from('acessos').upsert({ usuario_id: user.id, resposta_id: atual.id, ultimo_acesso: new Date().toISOString() });
     parecidas = buscar(sp.q ?? '', base.filter(b => b.id !== sp.r), 3).filter(a => a.pontos >= LIMITE_MINIMO).map(a => a.resposta);
   }
   return (

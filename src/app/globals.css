@@ -52,3 +52,11 @@ a.area:hover{border-color:var(--cor,var(--vermelho))} a.area h3{color:var(--cor,
   .editor{gap:1rem}
 }
 @media(min-width:1100px){.pagina{padding-top:3.5rem}}
+.tarefa{display:flex;gap:.7rem;align-items:flex-start;width:100%;text-align:left;background:transparent;color:var(--tinta);border:1px solid var(--linha);font-weight:400;margin:.4rem 0;padding:.6rem .75rem}
+.tarefa:hover{background:#f7f5f1}.tarefa span:first-child{color:var(--cinza);font-weight:700;min-width:1.1rem}
+.tarefa.feita{color:var(--cinza);text-decoration:line-through;background:#f1f8f3;border-color:#b6dcc4}.tarefa.feita span:first-child{color:#1e8e5a;text-decoration:none}
+.cartao{background:#fff;border:1px solid var(--linha);border-radius:8px;padding:.8rem 1rem}.cartao p{margin:.3rem 0}
+progress{height:10px}
+.barras{display:grid;gap:.5rem;margin:1rem 0}
+.barra-linha{display:grid;grid-template-columns:2.2rem 1fr 5.5rem;gap:.6rem;align-items:center;font-size:.9rem}
+.barra-linha>div{display:grid;gap:3px}.barra-linha i{display:block;height:7px;border-radius:4px;min-width:2px}
