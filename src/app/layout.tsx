@@ -5,7 +5,7 @@ import { getPerfil } from '@/lib/supabase/server';
 
 export const metadata: Metadata = {
   title: 'Conquistando a Perfeição · Calçados Beira Rio',
-  description: 'Cultura que entra na rotina da liderança.',
+  description: 'dia a dia na fronteira da perfeição',
   icons: { icon: '/icon-192.png', apple: '/icon-192.png' },
 };
 
