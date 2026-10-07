@@ -30,6 +30,7 @@ No Supabase, abra o **SQL Editor** e rode **um arquivo por vez, na ordem dos nú
 | 8 | `08-usuarios-aprovacao-e-aceite.sql` | Aprovação de acessos, domínios, aceite dos termos |
 | 9 | `09-limite-de-perguntas.sql` | Proteção contra excesso de perguntas |
 | 10 | `10-promover-administrador.sql` | Só depois de criar seu acesso em `/cadastro` |
+| 11 | `11-manter-projeto-ativo.sql` | Tabela mínima para o GitHub manter o projeto ativo (veja abaixo) |
 
 Regras: rode o **08 antes** de publicar a versão nova do site. Todos podem ser repetidos, mas o 03 sobrescreve edições feitas no painel, e se você repetir um arquivo de 1 a 7 depois do 08, rode o 08 de novo em seguida.
 
@@ -45,6 +46,9 @@ Funciona pelo e-mail do Supabase. Confira em Authentication > URL Configuration 
 
 ## Newsletter por e-mail (opcional)
 Crie uma conta na Brevo, verifique o e-mail remetente e cadastre na Vercel `BREVO_API_KEY`, `NEWSLETTER_REMETENTE_EMAIL` e `NEWSLETTER_REMETENTE_NOME`. Use "Enviar teste para mim" antes do primeiro envio real. O **agendamento** usa o cron diário da Vercel e exige também `CRON_SECRET` e `SUPABASE_SERVICE_ROLE_KEY`, como variáveis de servidor (nunca com prefixo `NEXT_PUBLIC_`).
+
+## Manter o Supabase gratuito ativo
+O plano gratuito pausa o projeto após 7 dias sem uso. O workflow `.github/workflows/keep-supabase-alive.yml` consulta o banco a cada 3 dias para evitar isso. Para funcionar: (1) rode o SQL 11 no Supabase; (2) no GitHub, em Settings > Secrets and variables > Actions, crie `SUPABASE_URL` e `SUPABASE_ANON_KEY` (mesmos valores de `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY`); (3) na aba Actions, rode "Keep Supabase Alive" uma vez para testar.
 
 ## Segurança
 - Só respostas **aprovadas** aparecem para usuários; administradores veem todas.

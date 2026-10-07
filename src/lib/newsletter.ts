@@ -48,6 +48,7 @@ export async function carregarDestaques(supabase: SupabaseClient, id: string): P
 export async function publicarEdicao(supabase: SupabaseClient, id: string, porEmail: boolean) {
   const { data: n } = await supabase.from('newsletters').select('id,titulo,resumo,corpo').eq('id', id).single();
   if (!n) return { ok: false as const, enviados: 0, erro: 'Edição não encontrada.' };
+  if (!n.corpo?.trim()) return { ok: false as const, enviados: 0, erro: 'A edição está sem texto. Escreva o texto, salve e publique de novo.' };
   let enviados = 0;
   if (porEmail) {
     const url = `${process.env.NEXT_PUBLIC_SITE_URL}/newsletter/${id}`;
