@@ -1,0 +1,14 @@
+.passos,.hoje{background:#fff;border:1px solid var(--linha);border-left:5px solid var(--vermelho-vivo);border-radius:8px;padding:1rem 1.2rem;margin:1.2rem 0;max-width:44rem}
+.rotulo{color:var(--cinza);font-weight:600;font-size:.85rem;letter-spacing:.03em;margin:0}
+.hoje h2{margin:.2rem 0 .3rem;font-size:clamp(1.3rem,3vw,1.7rem)}
+.hoje p{margin:.2rem 0;color:var(--cinza)}
+.acoes{display:flex;gap:.6rem;flex-wrap:wrap;margin:.8rem 0}
+.acoes form{margin:0}
+.passos ol{list-style:none;padding:0;margin:.5rem 0 0}
+.passos li{display:flex;gap:.6rem;align-items:center;min-height:44px;border-top:1px solid var(--linha)}
+.passos li a{flex:1;color:inherit;text-decoration:none;padding:.4rem 0}
+.passos li.feito{color:var(--cinza)}
+.passos li.feito a{text-decoration:line-through}
+.marca{min-width:1.2rem;font-weight:700;color:var(--cinza)}
+.passos li.feito .marca{color:#1e8e5a}
+@media(max-width:640px){.acoes>*,.acoes button,.acoes a{width:100%}}
